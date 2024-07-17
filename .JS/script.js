@@ -57,7 +57,6 @@ const Challenge1 = () => {
         const x = horizontalVelocity * t;
         //s_y = ut + 0.5at^2 + c, where c = LAUNCH_HEIGHT
         const y = verticalVelocity * t + 0.5 * G * t ** 2 + LAUNCH_HEIGHT;
-        console.log('here');
         if (y < 0) { //below ground level
             break;
         }
