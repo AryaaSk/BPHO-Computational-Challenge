@@ -5,7 +5,9 @@ let ANGLE = 30; //angle to the horizontal [degrees]
 let G = -9.81; //graviational field strength [ms-2]
 let LAUNCH_SPEED = 10; //[ms-1]
 let LAUNCH_HEIGHT = 3; //[m]
-let TIME_STEP = 0.001; //time interval between samples [s]
+
+let TIME_STEP = 0.001; //time interval between samples [s] for challenge 1
+let X_STEP = 0.001; //[m] for challenge 2
 
 //View window
 let MIN_X = -1;
@@ -14,17 +16,26 @@ let MIN_Y = -1;
 let MAX_Y = 15;
 
 //implement bounds using a conversion
-const midX = 0.5 * (MAX_X + MIN_X)
-const xScale = canvas.canvasWidth / (MAX_X - MIN_X);
-const midY = 0.5 * (MAX_Y + MIN_Y)
-const yScale = canvas.canvasHeight / (MAX_Y - MIN_Y);
+let [midX, xScale, midY, yScale] = [0, 0, 0, 0];
+const CALCULATE_CONVERSION_FACTORS = () => {
+    midX = 0.5 * (MAX_X + MIN_X)
+    xScale = canvas.canvasWidth / (MAX_X - MIN_X);
+    midY = 0.5 * (MAX_Y + MIN_Y)
+    yScale = canvas.canvasHeight / (MAX_Y - MIN_Y);
+}
+CALCULATE_CONVERSION_FACTORS();
 
 const TransformPoint = (point: number[]) => {
     const [x, y] = point;
     return [xScale * (x - midX), yScale * (y - midY)];
 }
-const PlotPoint = (point: number[], colour: string, label?: string) => {
+
+const PlotPoint = (point: number[], colour: string, label?: string, offset?: { x: number, y: number }) => {
     const transformedPoint = TransformPoint(point);
+    if (offset != undefined) {
+        transformedPoint[0] += offset.x;
+        transformedPoint[1] += offset.y;
+    }
     canvas.plotPoint(transformedPoint, colour, label);
 }
 const DrawLine = (points: number[][], colour: string, thickness: number) => {
@@ -49,49 +60,22 @@ const DrawAxis = () => {
 }
 
 
-//create a set of (x, y) points starting at (0, LAUNCH_HEIGHT) and ending when y < 0
-const Challenge1 = () => {
-    canvas.clearCanvas();
-    DrawAxis();
-
-    const points: number[][] = [];
-    let t = 0;
-    
-    const angleRadians = ANGLE * Math.PI / 180;
-    const horizontalVelocity = LAUNCH_SPEED * Math.cos(angleRadians);
-    const verticalVelocity = LAUNCH_SPEED * Math.sin(angleRadians);
-
-    while (true) {
-        //compute horizontal and vertical displacements at time t
-        //s_x = vt
-        const x = horizontalVelocity * t;
-
-        //s_y = ut + 0.5at^2 + c, where c = LAUNCH_HEIGHT
-        const y = verticalVelocity * t + 0.5 * G * t**2 + LAUNCH_HEIGHT;
-
-        if (y < 0) { //below ground level
-            break;
-        }
-
-        points.push([x, y]);
-        t += TIME_STEP;
-    }
-
-    DrawLine(points, "blue", 10);
-}
-
-
 //UI elements
 const E = (id: string) => {
     return document.getElementById(id)!;
 }
+const titleElement = E("title");
+const SetTitle = (title: string) => {
+    titleElement.innerText = title;
+}
+
 const InitListeners = () => {
     const angleLabel = E("angleLabel");
     const angleSlider = E("angle") as HTMLInputElement;
     angleSlider.addEventListener('input', () => {
         ANGLE = Number(angleSlider.value);
         angleLabel.innerText = `Launch Angle (${ANGLE} degrees)`;
-        Challenge1();
+        CURRENT_CHALLENGE();
     });
 
     const gLabel = E("gLabel");
@@ -99,7 +83,7 @@ const InitListeners = () => {
     gSlider.addEventListener('input', () => {
         G = -1 * Number(gSlider.value);
         gLabel.innerText = `Gravitational Field Strength (${G} ms-2)`;
-        Challenge1();
+        CURRENT_CHALLENGE();
     });
 
     const speedLabel = E("speedLabel");
@@ -107,7 +91,7 @@ const InitListeners = () => {
     speedSlider.addEventListener('input', () => {
         LAUNCH_SPEED = Number(speedSlider.value);
         speedLabel.innerText = `Launch Speed (${LAUNCH_SPEED} ms-1)`;
-        Challenge1();
+        CURRENT_CHALLENGE();
     });
 
     const heightLabel = E("heightLabel");
@@ -115,13 +99,11 @@ const InitListeners = () => {
     heightSlider.addEventListener('input', () => {
         LAUNCH_HEIGHT = Number(heightSlider.value);
         heightLabel.innerText = `Launch Height (${LAUNCH_HEIGHT} m)`;
-        Challenge1();
+        CURRENT_CHALLENGE();
     });
 
 }
-
-
-
-
 InitListeners();
-Challenge1();
+
+
+CURRENT_CHALLENGE(); //change challenge displayed within challenges.ts
