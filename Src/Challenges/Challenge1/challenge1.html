@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 1</title>
+
+    <script src="/.JS/Utilities/native.js"></script>
+    <script src="/.JS/Utilities/canvasUtilities.js"></script>
+    <script src="/.JS/Utilities/challengeSetup.js" defer></script>
+
+    <script src="/.JS/Challenges/Challenge1/challenge1.js" defer></script>
+    
+    <link rel="stylesheet" href="/Src/Utilities/native.css">
+    <link rel="stylesheet" href="/Src/Utilities/challenge.css">
+
+</head>
+<body ontouchstart class="noTabBar">
+    <div class="navigation-bar">
+        <div class="leftButtons">
+            <button class="button" id="back">Back</button>
+        </div>
+        <div><label>Challenge 1</label></div>
+        <div class="rightButtons"></div>
+    </div>
+    
+    <div class="main">
+        <label id="angleLabel">Launch Angle (30 degrees)</label>
+        <input type="range" id="angleSlider" min="0" max="90" step="0.01">
+        <br>
+
+        <label id="gLabel">Gravitational Field Strength (-9.81 ms-2)</label>
+        <input type="range" id="gSlider" min="5" max="15" step="0.01">
+        <br>
+        
+        <label id="speedLabel">Launch Speed (10 ms-1)</label>
+        <input type="range" id="speedSlider" min="0" max="15" step="0.01">
+        <br>
+
+        <label id="heightLabel">Launch Height (3 m)</label>
+        <input type="range" id="heightSlider" min="0" max="10" step="0.01">
+        <br>
+
+        <canvas id="canvas"></canvas>
+    </div>
+</body>
+</html>

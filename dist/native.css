@@ -1,0 +1,291 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    /* Making it feel like a mobile app */
+    touch-action: pan-y;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+
+    color: var(--textColour);
+    background-color: var(--navigationTabBarBackgroundColour);
+    overflow: hidden; /* Need this to prevent scrolling of tabbar, even with position:fixed, however it means that I have to manually add overflow:auto everytime there is going to be an overflow */
+    -webkit-tap-highlight-color: transparent;
+
+    /* Constants */
+    --navigationBarHeight: 44px;
+    --tabBarHeight: 50px;
+    --tabBarPaddingBottom: 0px;
+    --elementSideMargin: 5px;
+
+    /* Variables */
+    --textColour: rgb(0, 0, 0);
+    --secondaryTextColour: rgb(50, 50, 50); /* Used for headers and footers for tableviews and collectionviews */
+    --tertiaryTextColour: rgb(135, 135, 135); /* Used for the tab bar item's titles */
+    --linkColour: rgb(10, 132, 255);
+
+    --systemBackgroundColour: rgb(255, 255, 255); /* Normal background colour */
+    --systemGroupedBackgroundColour: rgb(247, 247, 247); /* Used as the background colour of tableviews and collectionviews */
+    --systemHighlightBackgroundColour: rgb(225, 225, 225); /* Used when user is holding down a button */
+    --navigationTabBarBackgroundColour: rgb(247, 247, 247);
+    --systemObjectBackgroundColour: rgb(255, 255, 255); /* This is the background colour of most elements, e.g. textfield or button */
+    --systemBorder: 1px solid rgb(225, 225, 225);
+
+    --defaultTitleSize: large; /* Navigation bar text */
+    --defaultTextSize: medium; /* Most other text */
+
+    --tableviewHeaderFooterFontSize: small;
+    --defaultTableviewCellHeight: 44px;
+    --defaultTableviewSectionGap: 50px;
+
+    --collectionviewHeaderFooterFontSize: small;
+    --defaultCollectionviewSectionGap: 50px;
+    --defaultCollectionViewCellSize: 100px;
+    --defaultCollectionViewCellGap: 10px;
+}
+.noTabBar {
+    --tabBarHeight: 0px;
+}
+
+
+.navigation-bar {
+    height: var(--navigationBarHeight);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100%;
+    place-items: center;
+
+    background-color: var(--navigationTabBarBackgroundColour);
+    border-bottom: var(--systemBorder);
+    z-index: 1;
+    touch-action: none;
+}
+.navigation-bar > div > label {
+    position: absolute; /* To make sure that title is always centered */
+    left: 50%;
+    top: 50%;
+    -moz-transform: translate(-50%, -50%); /* Firefox */
+    -ms-transform: translate(-50%, -50%);  /* IE 9 */
+    -webkit-transform: translate(-50%, -50%); /* Safari and Chrome*/
+    -o-transform: translate(-50%, -50%); /* Opera */
+    transform: translate(-50%, -50%);
+
+    font-size: var(--defaultTitleSize);
+    font-weight: bold;
+}
+
+
+.tab-bar {
+    height: var(--tabBarHeight);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    padding-bottom: var(--tabBarPaddingBottom);
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    background-color: var(--navigationTabBarBackgroundColour);
+    border-top: var(--systemBorder);
+    z-index: 1;
+    touch-action: none;
+}
+.tab-bar > .item {
+    height: 90%;
+    width: 50px;
+
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 70% 30%;
+    place-items: center;
+}
+.tab-bar > .item > img,
+.tab-bar > .item > svg {
+    height: 80%;
+    width: 80%;
+
+    object-fit: contain;
+}
+.tab-bar > .item > label {
+    color: var(--tertiaryTextColour);
+    font-size: x-small;
+    white-space: nowrap;
+}
+
+
+.main {
+    position: fixed;
+    top: var(--navigationBarHeight);
+    left: 0;
+    right: 0;
+    bottom: var(--tabBarHeight);
+
+    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow: auto;
+    touch-action: pan-y;
+
+    background-color: var(--systemBackgroundColour);
+}
+
+
+.button {
+    padding: 0;
+    margin-left: var(--elementSideMargin);
+    margin-right: var(--elementSideMargin);
+
+    font-size: var(--defaultTextSize);
+    color: var(--linkColour);
+    transition: 100ms opacity ease-out;
+
+    border: none;
+    background-color: transparent;
+
+}
+.button:active {
+    opacity: 50%;
+}
+
+
+.textfield {
+    height: 43px;
+    padding: 10px;
+    margin-left: var(--elementSideMargin);
+    margin-right: var(--elementSideMargin);
+
+    font-size: var(--defaultTextSize);
+    color: var(--textColour);
+
+    border: var(--systemBorder);
+    background-color: var(--systemObjectBackgroundColour);
+}
+.textfield:focus {
+    outline: none;
+}
+
+.label {
+    margin-left: var(--elementSideMargin);
+    margin-right: var(--elementSideMargin);
+    font-size: var(--defaultTextSize);
+}
+
+
+.tableview {
+    height: max-content;
+    width: 100%;
+
+    background-color: var(--systemGroupedBackgroundColour);
+    overflow-y: auto;
+}
+.tableview > .section {
+    height: max-content;
+    width: 100%;
+    padding-bottom: var(--defaultTableviewSectionGap);
+}
+.tableview > .section > .row { /*This is just a default div, the developer should be able to customise this if needed */
+    height: var(--defaultTableviewCellHeight);
+    width: 100%;
+
+    padding: 5px;
+    padding-left: 15px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+
+    display: flex;
+    align-items: center;
+
+    border-top: var(--systemBorder);
+    background-color: var(--systemObjectBackgroundColour);
+    transition: 100ms background-color;
+}
+.tableview > .section > .click:active {
+    background-color: var(--systemHighlightBackgroundColour);
+}
+.tableview > .section > .row:last-of-type {
+    border-bottom: var(--systemBorder);
+}
+.tableview > .section > header, 
+.tableview > .section > footer {
+    height: max-content;
+    width: 100%;
+
+    padding-left: 16px;
+    padding-right: var(--elementSideMargin);
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+
+    color: var(--secondaryTextColour);
+    font-size: var(--tableviewHeaderFooterFontSize);
+}
+.tableview > .section > header {
+    margin-bottom: 5px;
+}
+.tableview > .section > footer {
+    margin-top: 5px;
+}
+
+
+
+.collectionview {
+    height: max-content;
+    width: 100%;
+
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: var(--systemGroupedBackgroundColour);
+    overflow-y: auto;
+}
+.collectionview > .section {
+    height: max-content;
+    max-width: 100%;
+    padding-bottom: var(--defaultCollectionviewSectionGap);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, var(--defaultCollectionViewCellSize));
+    grid-template-rows: repeat(auto-fit, var(--defaultCollectionViewCellSize));;
+    gap: var(--defaultCollectionViewCellGap);
+}
+.collectionview > .section > .cell { /* Default cell, can be overwritten by developer */
+    height: var(--defaultCollectionViewCellSize);
+    width: var(--defaultCollectionViewCellSize);
+
+    padding: 5px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+
+    display: grid;
+    place-content: center;
+
+    border-radius: 10%;
+    background-color: var(--systemObjectBackgroundColour);
+    transition: 100ms background-color;
+}
+.collectionview > .section > .clickable:active {
+    background-color: var(--systemHighlightBackgroundColour);
+}

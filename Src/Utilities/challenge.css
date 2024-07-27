@@ -1,0 +1,9 @@
+.main {
+    text-align: center;
+}
+
+#canvas {
+    height: 300px;
+    width: 90%;
+    margin-top: 30px;
+}

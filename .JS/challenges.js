@@ -1,5 +1,5 @@
 "use strict";
-//contains code for Challenge 1 and Challenge 2
+//contains code for setting up general challenge, e.g. setting up
 //create a set of (x, y) points starting at (0, LAUNCH_HEIGHT) and ending when y < 0
 const Challenge1 = () => {
     const points = [];
