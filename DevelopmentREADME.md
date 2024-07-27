@@ -2,7 +2,9 @@
 
 ## Instructions for adding new challenges to this project
 
-Follow these steps to add a new challenge to the project, e.g. Challenge X
+Follow these steps to add a new challenge to the project, e.g. Challenge X.
+
+You can watch a demonstration of adding a simple challenge which allows the user to input an x and y coordinate and plots the result on a screen [here](https://youtu.be/3Zx_rxW8xsA)
 
 ### Files
 
@@ -133,5 +135,4 @@ With these functions, you can process and plot the data supplied by parameters w
 Look at the code within [Challenge 1](Src/Challenges/Challenge1) as an example.
 
 ### Running locally
-
 To run the webpage locally and build to dist, follow the instructions [here](https://github.com/AryaaSk/Vanilla-Template)
