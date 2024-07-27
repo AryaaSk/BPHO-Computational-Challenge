@@ -6,10 +6,10 @@ Follow these steps to add a new challenge to the project, e.g. Challenge X
 
 ### Files
 
-Create new files under the **CHallenges** directory
+Create new files under the **Src/Challenges** directory
 ```
-Challenges/ChallengeX/challengeX.html
-Challenges/ChallengeX/challengeX.ts
+Src/Challenges/ChallengeX/challengeX.html
+Src/Challenges/ChallengeX/challengeX.ts
 ```
 
 Add a new entry into the CHALLENGES array within [script.ts](Src/script.ts)
