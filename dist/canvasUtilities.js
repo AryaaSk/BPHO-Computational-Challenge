@@ -103,4 +103,49 @@ class Canvas {
         }
         this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
     };
+    //adding in some intermediary functions
+    MIN_X = -1;
+    MAX_X = 15;
+    MIN_Y = -1;
+    MAX_Y = 15;
+    midX = 0;
+    xScale = 0;
+    midY = 0;
+    yScale = 0;
+    CalculateConversionFactors = () => {
+        this.midX = 0.5 * (this.MAX_X + this.MIN_X);
+        this.xScale = this.canvasWidth / (this.MAX_X - this.MIN_X);
+        this.midY = 0.5 * (this.MAX_Y + this.MIN_Y);
+        this.yScale = this.canvasHeight / (this.MAX_Y - this.MIN_Y);
+    };
+    TransformPoint = (point) => {
+        const [x, y] = point;
+        return [this.xScale * (x - this.midX), this.yScale * (y - this.midY)];
+    };
+    PlotPoint = (point, colour, label, offset) => {
+        const transformedPoint = this.TransformPoint(point);
+        if (offset != undefined) {
+            transformedPoint[0] += offset.x;
+            transformedPoint[1] += offset.y;
+        }
+        this.plotPoint(transformedPoint, colour, label);
+    };
+    DrawLine = (points, colour, thickness) => {
+        for (let i = 0; i < points.length - 1; i += 1) {
+            const point1 = this.TransformPoint(points[i]);
+            const point2 = this.TransformPoint(points[i + 1]);
+            this.drawLine(point1, point2, colour, thickness);
+        }
+    };
+    DrawAxis = () => {
+        //draw the positive x and y axis from 0 to MAX_X/MAX_Y - 1
+        this.DrawLine([[0, 0], [this.MAX_X - 1, 0]], "black", 3);
+        for (let x = 0; x != this.MAX_X; x += 1) {
+            this.PlotPoint([x, 0], "grey", String(x));
+        }
+        this.DrawLine([[0, 0], [0, this.MAX_Y - 1]], "black", 3);
+        for (let y = 1; y != this.MAX_Y; y += 1) {
+            this.PlotPoint([0, y], "grey", String(y));
+        }
+    };
 }

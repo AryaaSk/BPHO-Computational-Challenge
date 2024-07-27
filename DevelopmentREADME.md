@@ -12,7 +12,7 @@ Challenges/ChallengeX/challengeX.html
 Challenges/ChallengeX/challengeX.ts
 ```
 
-Add a new entry into the CHALLENGES array within [script.ts](Src/script.ts)!
+Add a new entry into the CHALLENGES array within [script.ts](Src/script.ts)
 ```typescript
 const CHALLENGES: Challenge[] = [
     { name: "Challenge 1", HTMLFilePath: "/Src/Challenges/Challenge1/challenge1.html" },
@@ -41,8 +41,8 @@ Place this HTML code within challengeX.html (commented where to change)
     <link rel="stylesheet" href="/Src/Utilities/native.css">
     <link rel="stylesheet" href="/Src/Utilities/challenge.css">
 
-    <!-- Change the file name to the name of the TypeScript file you created (ignore .js file extension) -->
-    <script src="/.JS/Challenges/Challenge2/challengeX.js" defer></script>
+    <!-- Replace X with the the actual challenge's number -->
+    <script src="/.JS/Challenges/ChallengeX/challengeX.js" defer></script>
 </head>
 <body ontouchstart class="noTabBar">
     <div class="navigation-bar">
@@ -90,6 +90,7 @@ To do this, add a key within the parameter object.
 ```typescript
 const ChallengeXParameters = {
     angle: 30,
+    timeStep: 0.001
 };
 ```
 
@@ -129,8 +130,8 @@ canvas.CalculateConversionFactors(); //whenever adjusting the view window, you n
 
 With these functions, you can process and plot the data supplied by parameters within the CURRENT_CHALLENGE function and subsequently complete a new challenge.
 
-Look at the code within [Challenge 1](Src/Challenges/Challenge1)! as an example.
+Look at the code within [Challenge 1](Src/Challenges/Challenge1) as an example.
 
 ### Running locally
 
-To run the webpage locally and build to dist, follow the instructions [here](https://github.com/AryaaSk/Vanilla-Template)!
+To run the webpage locally and build to dist, follow the instructions [here](https://github.com/AryaaSk/Vanilla-Template)
