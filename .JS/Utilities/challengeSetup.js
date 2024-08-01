@@ -3,7 +3,7 @@ let CURRENT_CHALLENGE = () => { }; //holds the current challenge's callback
 const InitBackButton = () => {
     const backButton = document.getElementById("back");
     backButton.onclick = () => {
-        window.history.go(-1);
+        location.href = "Src/index.html";
     };
 };
 const LinkSliderToKey = (parameters, key, sliderID, labelID, template) => {

@@ -1,7 +1,8 @@
 "use strict";
 const CHALLENGES = [
     { name: "Challenge 1", HTMLFilePath: "challenge1.html" },
-    { name: "Challenge 2", HTMLFilePath: "challenge2.html" }
+    { name: "Challenge 2", HTMLFilePath: "challenge2.html" },
+    { name: "Challenge 8", HTMLFilePath: "challenge8.html" },
 ];
 const LoadChallenges = (challenges) => {
     //populate tableview with rows, with each row being a button to access a challenge

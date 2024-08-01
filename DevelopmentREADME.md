@@ -38,6 +38,7 @@ Place this HTML code within challengeX.html (commented where to change)
 
     <script src="/.JS/Utilities/native.js"></script>
     <script src="/.JS/Utilities/canvasUtilities.js"></script>
+    <script src="/.JS/Challenges/challengeUtilities.js"></script>
     <script src="/.JS/Utilities/challengeSetup.js" defer></script>
     
     <link rel="stylesheet" href="/Src/Utilities/native.css">

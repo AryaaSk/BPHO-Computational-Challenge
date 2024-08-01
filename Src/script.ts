@@ -5,7 +5,8 @@ interface Challenge {
 
 const CHALLENGES: Challenge[] = [
     { name: "Challenge 1", HTMLFilePath: "/Src/Challenges/Challenge1/challenge1.html" },
-    { name: "Challenge 2", HTMLFilePath: "/Src/Challenges/Challenge2/challenge2.html" }
+    { name: "Challenge 2", HTMLFilePath: "/Src/Challenges/Challenge2/challenge2.html" },
+    { name: "Challenge 8", HTMLFilePath: "/Src/Challenges/Challenge8/challenge8.html" },
 ];
 
 
