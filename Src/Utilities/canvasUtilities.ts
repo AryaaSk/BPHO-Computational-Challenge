@@ -129,12 +129,12 @@ class Canvas {
     DrawAxis = () => {
         //draw the positive x and y axis from 0 to MAX_X/MAX_Y - 1
         this.DrawLine([[0, 0], [this.MAX_X - 1, 0]], "black", 3);
-        for (let x = 0; x != this.MAX_X; x += 1) {
+        for (let x = 0; x < this.MAX_X; x += 1) {
             this.PlotPoint([x, 0], "grey", String(x))
         }
     
         this.DrawLine([[0, 0], [0, this.MAX_Y - 1]], "black", 3);
-        for (let y = 1; y != this.MAX_Y; y += 1) {
+        for (let y = 1; y < this.MAX_Y; y += 1) {
             this.PlotPoint([0, y], "grey", String(y))
         }
     }

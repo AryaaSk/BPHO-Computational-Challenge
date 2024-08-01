@@ -6,10 +6,10 @@ const Challenge2Parameters = {
     height: 3,
     xStep: 0.001
 };
-LinkSliderToKey(Challenge2Parameters, "angle", "angleSlider", "angleLabel", "Launch Angle (X degrees)");
-LinkSliderToKey(Challenge2Parameters, "g", "gSlider", "gLabel", "Gravitational Field Strength (-X ms-2)");
-LinkSliderToKey(Challenge2Parameters, "speed", "speedSlider", "speedLabel", "Launch Speed (X ms-1)");
-LinkSliderToKey(Challenge2Parameters, "height", "heightSlider", "heightLabel", "Launch Height (X m)");
+InitSliderForKey(Challenge2Parameters, "angle", "Launch Angle (X degrees)", { min: 0, max: 90, step: 1 });
+InitSliderForKey(Challenge2Parameters, "g", "Gravitational Field Strength (-X ms-2)", { min: 1, max: 15, step: 0.1 });
+InitSliderForKey(Challenge2Parameters, "speed", "Launch Speed (X ms-1)", { min: 1, max: 15, step: 0.1 });
+InitSliderForKey(Challenge2Parameters, "height", "Launch Height (X m)", { min: 0, max: 10, step: 0.1 });
 //@ts-expect-error
 const canvas = new Canvas();
 canvas.linkCanvas("canvas");
@@ -34,19 +34,21 @@ CURRENT_CHALLENGE = () => {
     const root = (-b - Math.sqrt(b ** 2 - 4 * a * c)) / (2 * a);
     //plot all x coordinates from 0 to root
     const points = [];
-    const y = (x) => {
+    const Y = (x) => {
         return b * x + a * x ** 2 + c;
     };
     for (let x = 0; x <= root; x += Challenge2Parameters.xStep) {
-        points.push([x, y(x)]);
+        const y = Y(x);
+        points.push([x, y]);
+        //update maxX and maxY
+        canvas.MAX_X = Math.max(15, x + 1);
+        canvas.MAX_Y = Math.max(15, y + 1);
     }
-    canvas.MAX_X = Math.round(Math.max(15, ...points.map((point) => { return point[0] + 2; })));
-    canvas.MAX_Y = Math.round(Math.max(15, ...points.map((point) => { return point[1] + 2; })));
     canvas.CalculateConversionFactors();
     //challenge 2 also requires us to plot the apogee (point with greatest y coordinate)
     //the apogee is just the turning point, and thus will occur when x = -b/2a and y = y(-b/2a)
     const apogeeX = -b / (2 * a);
-    const apogee = [apogeeX, y(apogeeX)];
+    const apogee = [apogeeX, Y(apogeeX)];
     const pointOffset = 10; //line gets slightly raised due to thickness, so offset point to preven the point from looking out of place
     canvas.clearCanvas();
     canvas.DrawAxis();

@@ -57,7 +57,9 @@ Place this HTML code within challengeX.html (commented where to change)
     </div>
     
     <div class="main">
-        <!-- Page content goes here -->
+        <div id="parameters">
+            <!-- Parameters added dynamically within JS -->
+        </div>
 
         <!-- Every page comes within an inbuilt canvas -->
         <canvas id="canvas"></canvas>
@@ -97,17 +99,13 @@ const ChallengeXParameters = {
 };
 ```
 
-For some parameters, you will also want the user to be able to edit them. To add a slider to allow the user to do this, add a range element within the challengeX.html main element.
-```html
-<label id="angleLabel">Launch Angle (30 degrees)</label>
-<input type="range" id="angleSlider" min="0" max="90" step="0.01"> <!-- Remember to set the boundary conditions -->
-```
-
-Then to link this slider element with the TypeScript parameter, use the LinkSliderToKey function.\
+For some parameters, you will also want the user to be able to edit them. To do this, you can use the InitSliderForKey function which will create an input type range for the numerical slider.
 Every slider should have an associated label, and you can define the text template as shown below.
 ```typescript
-//LinkSliderToKey(parameters, key, sliderID, labelID, template)
-LinkSliderToKey(ChallengeXParameters, "angle", "angleSlider", "angleLabel", "Launch Angle (X degrees)");
+InitSliderForKey(parameters, key, template: string, sliderOptions)
+
+//example linking a slider for an angle input
+InitSliderForKey(ChallengeXParameters, "angle", "Launch Angle (X degrees)", { min: 0, max: 90, step: 1 });
 ```
 
 ### Plotting Graphs

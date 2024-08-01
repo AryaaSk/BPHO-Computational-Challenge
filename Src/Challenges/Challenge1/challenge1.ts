@@ -1,15 +1,15 @@
 const Challenge1Parameters = {
     angle: 30,
-    g: 9.81,
+    g: 9.8,
     speed: 5,
     height: 3,
     timeStep: 0.001
 };
 
-LinkSliderToKey(Challenge1Parameters, "angle", "angleSlider", "angleLabel", "Launch Angle (X degrees)");
-LinkSliderToKey(Challenge1Parameters, "g", "gSlider", "gLabel", "Gravitational Field Strength (-X ms-2)");
-LinkSliderToKey(Challenge1Parameters, "speed", "speedSlider", "speedLabel", "Launch Speed (X ms-1)");
-LinkSliderToKey(Challenge1Parameters, "height", "heightSlider", "heightLabel", "Launch Height (X m)");
+InitSliderForKey(Challenge1Parameters, "angle", "Launch Angle (X degrees)", { min: 0, max: 90, step: 1 });
+InitSliderForKey(Challenge1Parameters, "g", "Gravitational Field Strength (-X ms-2)", { min: 1, max: 15, step: 0.1 });
+InitSliderForKey(Challenge1Parameters, "speed", "Launch Speed (X ms-1)", { min: 1, max: 15, step: 0.1 });
+InitSliderForKey(Challenge1Parameters, "height", "Launch Height (X m)", { min: 0, max: 10, step: 0.1 });
 
 //@ts-expect-error
 const canvas = new Canvas();
@@ -38,11 +38,11 @@ CURRENT_CHALLENGE = () => {
 
         points.push([x, y]);
         t += Challenge1Parameters.timeStep;
-    }
 
-    //calculate new view window based on max X and max Y of these points
-    canvas.MAX_X = Math.round(Math.max(15, ...points.map((point) => { return point[0] + 2; })));
-    canvas.MAX_Y = Math.round(Math.max(15, ...points.map((point) => { return point[1] + 2; })));
+        //calculate new view window based on max X and max Y of these points
+        canvas.MAX_X = Math.max(15, x + 1)
+        canvas.MAX_Y = Math.max(15, y + 1)
+    }
     canvas.CalculateConversionFactors();
 
     canvas.clearCanvas();

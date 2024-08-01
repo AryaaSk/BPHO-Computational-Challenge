@@ -9,11 +9,11 @@ const Challenge8Parameters = {
     N: 6,
     timeStep: 0.01
 };
-LinkSliderToKey(Challenge8Parameters, "theta", "angleSlider", "angleLabel", "Launch Angle (X degrees)");
-LinkSliderToKey(Challenge8Parameters, "u", "speedSlider", "speedLabel", "Launch Speed (X ms-1)");
-LinkSliderToKey(Challenge8Parameters, "h", "heightSlider", "heightLabel", "Launch Height (X m)");
-LinkSliderToKey(Challenge8Parameters, "C", "cSlider", "cLabel", "Coefficient of Restitution (X)");
-LinkSliderToKey(Challenge8Parameters, "N", "nSlider", "nLabel", "Number of bounces (X)");
+InitSliderForKey(Challenge8Parameters, "theta", "Launch Angle (X degrees)", { min: 0, max: 90, step: 1 });
+InitSliderForKey(Challenge8Parameters, "u", "Launch Speed (X ms-1)", { min: 1, max: 15, step: 0.1 });
+InitSliderForKey(Challenge8Parameters, "h", "Launch Height (X m)", { min: 0, max: 10, step: 0.1 });
+InitSliderForKey(Challenge8Parameters, "C", "Coefficient of Restitution (X)", { min: 0, max: 1, step: 0.1 });
+InitSliderForKey(Challenge8Parameters, "N", "Number of Bounces (X)", { min: 1, max: 10, step: 1 });
 //@ts-expect-error
 const canvas = new Canvas();
 canvas.linkCanvas("canvas");
@@ -45,9 +45,9 @@ CURRENT_CHALLENGE = () => {
         const horizontalDisplacement = horizontalV * t;
         points.push([horizontalDisplacement, verticalDisplacement]);
         t += timeStep;
+        canvas.MAX_X = Math.max(15, horizontalDisplacement + 1);
+        canvas.MAX_Y = Math.max(15, verticalDisplacement + 1);
     }
-    canvas.MAX_X = Math.round(Math.max(15, ...points.map((point) => { return point[0] + 2; })));
-    canvas.MAX_Y = Math.round(Math.max(15, ...points.map((point) => { return point[1] + 2; })));
     canvas.CalculateConversionFactors();
     canvas.clearCanvas();
     canvas.DrawAxis();
