@@ -41,6 +41,8 @@ function solve(a: number, b: number, c: number): number[] {
     }
 }
 
+// TODO: still some bugs if you increase y too high or set u too low
+
 CURRENT_CHALLENGE = () => {
     const points_low: [number, number][] = []; // low ball points
     const points_high: [number, number][] = []; // high ball points
