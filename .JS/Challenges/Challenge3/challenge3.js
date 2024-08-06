@@ -41,6 +41,7 @@ function solve(a, b, c) {
         return root1 < root2 ? [root1, root2] : [root2, root1];
     }
 }
+// TODO: still some bugs if you increase y too high or set u too low
 CURRENT_CHALLENGE = () => {
     const points_low = []; // low ball points
     const points_high = []; // high ball points

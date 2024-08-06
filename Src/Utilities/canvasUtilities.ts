@@ -84,6 +84,8 @@ class Canvas {
     clearCanvas = () => {
         if (this.c == undefined) { console.error("Cannot draw, canvas is not linked, please use the linkCanvas(canvasID) before rendering any shapes"); return; }
         this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.c.fillStyle = 'white';
+        this.c.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
 
@@ -122,12 +124,36 @@ class Canvas {
         this.plotPoint(transformedPoint, colour, label);
     }
 
-    DrawLine = (points: number[][], colour: string, thickness: number) => {
-        for (let i = 0; i < points.length - 1; i += 1) {
+    ////to create animation, we can plot the points one by one with a small delay between each point
+    DrawLine = (points: number[][], colour: string, thickness: number, animationDelay?: number, callback?: () => void) => {
+        if (animationDelay == undefined) {
+            for (let i = 0; i < points.length - 1; i += 1) {
+                const point1 = this.TransformPoint(points[i]);
+                const point2 = this.TransformPoint(points[i + 1]);
+                this.drawLine(point1, point2, colour, thickness);
+            }
+            return;
+        }
+
+        //otherwise we create an interval and draw lines with delays in between. we can also return the interval so it can be paused
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i == points.length - 2) {
+                clearInterval(interval);
+
+                //once animation is complete, execute callback
+                if (callback) {
+                    callback();
+                }
+            }
+
             const point1 = this.TransformPoint(points[i]);
             const point2 = this.TransformPoint(points[i + 1]);
             this.drawLine(point1, point2, colour, thickness);
-        }
+
+            i += 1;
+        }, animationDelay);
+        return interval;
     }
     
     DrawAxis = () => {
@@ -143,4 +169,12 @@ class Canvas {
             this.PlotPoint([0, y], "grey", String(y))
         }
     }
+}
+
+const Wait = (ms: number) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(undefined);
+        }, ms);
+    })
 }

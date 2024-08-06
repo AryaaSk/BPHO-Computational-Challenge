@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="/Src/Utilities/native.css">
     <link rel="stylesheet" href="/Src/Utilities/challenge.css">
 
-    <!-- Replace X with the the actual challenge's number -->
+    <!-- For converting webm video format to mp4: https://github.com/Kagami/ffmpeg.js/ -->
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.10.0/dist/ffmpeg.min.js"></script>
     <script src="/.JS/Challenges/Challenge8/challenge8.js" defer></script>
 </head>
 <body ontouchstart class="noTabBar">
@@ -32,6 +33,9 @@
 
         <!-- Every page comes within an inbuilt canvas -->
         <canvas id="canvas"></canvas>
+        <br>
+
+        <a id="download" href="" style="display: none;">Download</a>
     </div>
 </body>
 </html>
