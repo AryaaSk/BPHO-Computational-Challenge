@@ -175,10 +175,3 @@ class Canvas {
         }
     };
 }
-const Wait = (ms) => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(undefined);
-        }, ms);
-    });
-};
