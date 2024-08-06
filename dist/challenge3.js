@@ -41,6 +41,7 @@ function solve(a, b, c) {
         return root1 < root2 ? [root1, root2] : [root2, root1];
     }
 }
+// TODO: still some bugs if you increase y too high or set u too low
 CURRENT_CHALLENGE = () => {
     const points_low = []; // low ball points
     const points_high = []; // high ball points
@@ -100,5 +101,10 @@ CURRENT_CHALLENGE = () => {
     }
     // plot minimum projectile speed
     canvas.DrawLine(points_min, "grey", 5);
+    AddKey([
+        { colour: "blue", label: "High ball" },
+        { colour: "grey", label: "Min u" },
+        { colour: "orange", label: "Low ball" }
+    ]);
 };
 CURRENT_CHALLENGE();

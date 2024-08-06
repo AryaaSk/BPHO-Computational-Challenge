@@ -48,4 +48,21 @@ const InitSliderForKey = (parameters, key, template, sliderOptions) => {
         UpdateValue(slider.value);
     });
 };
+const AddKey = (key) => {
+    //create a key wrapper, then add key elements within it
+    const main = document.getElementsByClassName("main")[0];
+    let keyContainer = document.getElementById("key");
+    if (keyContainer == null) {
+        keyContainer = document.createElement("div");
+        keyContainer.id = "key";
+        main.append(keyContainer);
+    }
+    keyContainer.innerHTML = "";
+    for (const item of key) {
+        const element = document.createElement("div");
+        element.className = "keyItem";
+        element.innerHTML = `<div class="line" style="background-color: ${item.colour}; "></div> ${item.label}`;
+        keyContainer.append(element);
+    }
+};
 InitBackButton();

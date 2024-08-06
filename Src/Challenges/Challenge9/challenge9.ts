@@ -106,5 +106,10 @@ CURRENT_CHALLENGE = () => {
     const pointOffset = 10;
     canvas.PlotPoint(apogeeAirResistance, "black", "Apogee", { x: 0, y: pointOffset / 2 });
     canvas.PlotPoint(apogeeDragFree, "black", "Apogee", { x: 0, y: pointOffset / 2 });
+
+    AddKey([
+        { colour: "red", label: "Air Resistance" },
+        { colour: "blue", label: "No Air Resistance" },
+    ]);
 }
 CURRENT_CHALLENGE();

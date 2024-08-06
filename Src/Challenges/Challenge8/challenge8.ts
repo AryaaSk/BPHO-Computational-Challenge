@@ -87,7 +87,6 @@ CURRENT_CHALLENGE = async () => {
     mediaRecorder.onstart = () => {
         //provide an animation delay to create animated effect of ball tracing out path
         if (interval != undefined) { //stop any previous animation
-            console.log(`cleared interval ${interval}`)
             clearInterval(interval);
         }
         interval = canvas.DrawLine(points, "blue", 3, 9, () => {
