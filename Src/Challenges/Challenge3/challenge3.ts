@@ -4,15 +4,15 @@ const Challenge3Parameters = {
     y: 300,
     h: 0,
     g: 9.81,
-    u: 150,
-    xStep: 10
+    u: 150
 };
+
 
 InitSliderForKey(Challenge3Parameters, "x", "Target x (X m)", { min: 0, max: 1200, step: 1 });
 InitSliderForKey(Challenge3Parameters, "y", "Target y (X m)", { min: 0, max: 1200, step: 1 });
 InitSliderForKey(Challenge3Parameters, "h", "Height (X m)", { min: 0, max: 1000, step: 1 });
 InitSliderForKey(Challenge3Parameters, "g", "Gravitaional Field Strength (X ms-2)", { min: 5, max: 15, step: 0.01 });
-InitSliderForKey(Challenge3Parameters, "u", "Launch Speed (X ms-1)", { min: 0, max: 500, step: 1 });
+InitSliderForKey(Challenge3Parameters, "u", "Launch Speed (X ms-1)", { min: 0, max: 500, step: 0.1 });
 
 // @ts-expect-error
 const canvas = new Canvas();
@@ -64,6 +64,11 @@ CURRENT_CHALLENGE = () => {
     const c = Y - h + a;
     const solutions = solve(a, b, c);
 
+    const slider = document.getElementById("u")! as HTMLInputElement;
+    slider.min = String(Math.round(min_speed * 10) / 10);
+    if (Number(slider.value) < min_speed) {
+        slider.value = String(Math.round(min_speed));
+    }
     let tan_theta_low = 0;
     let tan_theta_high = 0;
     // angle if projectile launched at minimum speed
@@ -74,7 +79,7 @@ CURRENT_CHALLENGE = () => {
         return tan_theta * x - (g / (2 * u ** 2)) * (1 + tan_theta ** 2) * x ** 2 + h;
     };
 
-    for (let x_min = 0; x_min <= X; x_min += Challenge3Parameters.xStep) {
+    for (let x_min = 0; x_min <= X; x_min += X / 100) {
         points_min.push([x_min, y(x_min, tan_theta_min, min_speed)]);
     }
 
@@ -83,10 +88,10 @@ CURRENT_CHALLENGE = () => {
         tan_theta_high = solutions[1];
 
         // generate set of array of points for low and high ball trajectory
-        for (let x_low = 0; x_low <= X; x_low += Challenge3Parameters.xStep) {
+        for (let x_low = 0; x_low <= X; x_low += X / 100) {
             points_low.push([x_low, y(x_low, tan_theta_low, launch_speed)]);
         }
-        for (let x_high = 0; x_high <= X; x_high += Challenge3Parameters.xStep) {
+        for (let x_high = 0; x_high <= X; x_high += X / 100) {
             points_high.push([x_high, y(x_high, tan_theta_high, launch_speed)]);
         }
     }

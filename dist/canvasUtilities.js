@@ -112,6 +112,9 @@ class Canvas {
     xScale = 0;
     midY = 0;
     yScale = 0;
+    // adding in step x and step y
+    xStep = 1;
+    yStep = 1;
     CalculateConversionFactors = () => {
         this.midX = 0.5 * (this.MAX_X + this.MIN_X);
         this.xScale = this.canvasWidth / (this.MAX_X - this.MIN_X);
@@ -140,11 +143,12 @@ class Canvas {
     DrawAxis = () => {
         //draw the positive x and y axis from 0 to MAX_X/MAX_Y - 1
         this.DrawLine([[0, 0], [this.MAX_X - 1, 0]], "black", 3);
-        for (let x = 0; x < this.MAX_X; x += 1) {
+        for (let x = 0; x < this.MAX_X; x += this.xStep) {
             this.PlotPoint([x, 0], "grey", String(x));
         }
         this.DrawLine([[0, 0], [0, this.MAX_Y - 1]], "black", 3);
-        for (let y = 1; y < this.MAX_Y; y += 1) {
+        // changed from let y = 1 to y = 0 because otherwise the intervals are weird
+        for (let y = 0; y < this.MAX_Y; y += this.yStep) {
             this.PlotPoint([0, y], "grey", String(y));
         }
     };

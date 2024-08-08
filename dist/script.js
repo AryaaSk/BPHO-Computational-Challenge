@@ -2,6 +2,10 @@
 const CHALLENGES = [
     { name: "Challenge 1", HTMLFilePath: "challenge1.html" },
     { name: "Challenge 2", HTMLFilePath: "challenge2.html" },
+    { name: "Challenge 3", HTMLFilePath: "challenge3.html" },
+    { name: "Challenge 4", HTMLFilePath: "challenge4.html" },
+    { name: "Challenge 5", HTMLFilePath: "challenge5.html" },
+    { name: "Challenge 6", HTMLFilePath: "challenge6.html" },
     { name: "Challenge 8", HTMLFilePath: "challenge8.html" },
 ];
 const LoadChallenges = (challenges) => {

@@ -28,6 +28,7 @@ const InitSliderForKey = (parameters, key, template, sliderOptions) => {
     const label = document.createElement("label");
     const slider = document.createElement("input");
     slider.type = "range";
+    slider.id = key;
     slider.min = String(sliderOptions.min);
     slider.max = String(sliderOptions.max);
     slider.step = String(sliderOptions.step);

@@ -34,6 +34,7 @@ const InitSliderForKey = (parameters: { [key: string]: number }, key: string, te
     const slider = document.createElement("input") as HTMLInputElement;
 
     slider.type = "range";
+    slider.id = key;
     slider.min = String(sliderOptions.min);
     slider.max = String(sliderOptions.max);
     slider.step = String(sliderOptions.step);
