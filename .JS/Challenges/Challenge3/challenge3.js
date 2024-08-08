@@ -105,5 +105,10 @@ CURRENT_CHALLENGE = () => {
     }
     // plot minimum projectile speed
     canvas.DrawLine(points_min, "grey", 5);
+    AddKey([
+        { colour: "blue", label: "High ball" },
+        { colour: "grey", label: "Min u" },
+        { colour: "orange", label: "Low ball" }
+    ]);
 };
 CURRENT_CHALLENGE();

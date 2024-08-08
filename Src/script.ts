@@ -11,6 +11,7 @@ const CHALLENGES: Challenge[] = [
     { name: "Challenge 5", HTMLFilePath: "/Src/Challenges/Challenge5/challenge5.html" },
     { name: "Challenge 6", HTMLFilePath: "/Src/Challenges/Challenge6/challenge6.html" },
     { name: "Challenge 8", HTMLFilePath: "/Src/Challenges/Challenge8/challenge8.html" },
+    { name: "Challenge 9", HTMLFilePath: "/Src/Challenges/Challenge9/challenge9.html" },
 ];
 
 

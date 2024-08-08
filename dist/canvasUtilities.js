@@ -102,6 +102,8 @@ class Canvas {
             return;
         }
         this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.c.fillStyle = 'white';
+        this.c.fillRect(0, 0, this.canvas.width, this.canvas.height);
     };
     //adding in some intermediary functions
     MIN_X = -1;
@@ -133,12 +135,32 @@ class Canvas {
         }
         this.plotPoint(transformedPoint, colour, label);
     };
-    DrawLine = (points, colour, thickness) => {
-        for (let i = 0; i < points.length - 1; i += 1) {
+    ////to create animation, we can plot the points one by one with a small delay between each point
+    DrawLine = (points, colour, thickness, animationDelay, callback) => {
+        if (animationDelay == undefined) {
+            for (let i = 0; i < points.length - 1; i += 1) {
+                const point1 = this.TransformPoint(points[i]);
+                const point2 = this.TransformPoint(points[i + 1]);
+                this.drawLine(point1, point2, colour, thickness);
+            }
+            return;
+        }
+        //otherwise we create an interval and draw lines with delays in between. we can also return the interval so it can be paused
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i == points.length - 2) {
+                clearInterval(interval);
+                //once animation is complete, execute callback
+                if (callback) {
+                    callback();
+                }
+            }
             const point1 = this.TransformPoint(points[i]);
             const point2 = this.TransformPoint(points[i + 1]);
             this.drawLine(point1, point2, colour, thickness);
-        }
+            i += 1;
+        }, animationDelay);
+        return interval;
     };
     DrawAxis = () => {
         //draw the positive x and y axis from 0 to MAX_X/MAX_Y - 1

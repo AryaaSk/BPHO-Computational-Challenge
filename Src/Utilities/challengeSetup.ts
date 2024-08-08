@@ -58,4 +58,27 @@ const InitSliderForKey = (parameters: { [key: string]: number }, key: string, te
     })
 }
 
+const AddKey = (key: { colour: string, label: string }[]) => {
+    //create a key wrapper, then add key elements within it
+    const main = document.getElementsByClassName("main")[0]
+
+    let keyContainer = document.getElementById("key") as HTMLElement | null;
+
+    if (keyContainer == null) {
+        keyContainer = document.createElement("div");
+        keyContainer.id = "key";
+        main.append(keyContainer)
+    }
+
+    keyContainer.innerHTML = "";
+    for (const item of key) {
+        const element = document.createElement("div");
+        element.className = "keyItem";
+        element.innerHTML = `<div class="line" style="background-color: ${item.colour}; "></div> ${item.label}`;
+        keyContainer!.append(element);
+    }
+}
+
+
+
 InitBackButton();

@@ -13,7 +13,7 @@ InitSliderForKey(Challenge4Parameters, "height", "Launch Height (X m)", { min: 0
 
 
 // Function to solve quadratic and linear equations
-function solve(a: number, b: number, c: number): number[] {
+function solve_4(a: number, b: number, c: number): number[] {
     if (a === 0) {
         if (b !== 0) {
             return [-c / b];
@@ -52,14 +52,14 @@ CURRENT_CHALLENGE = () => {
     const a = g / (2 * v_hor**2);
     const b = v_ver / v_hor;
     const c = h;
-    const root = solve(a, b, c)[1];
+    const root = solve_4(a, b, c)[1];
 
     const v_hor_max = u * Math.cos(angle_radians_max);
     const v_ver_max = u * Math.sin(angle_radians_max);
     const a_max = g / (2 * v_hor_max**2);
     const b_max = v_ver_max / v_hor_max;
     const c_max = h;
-    const root_max = solve(a_max, b_max, c_max)[1];
+    const root_max = solve_4(a_max, b_max, c_max)[1];
     
      //plot all x coordinates from 0 to root
     const points: number[][] = [];
@@ -96,5 +96,9 @@ CURRENT_CHALLENGE = () => {
     canvas.DrawAxis();
     canvas.DrawLine(points, "blue", 10);
     canvas.DrawLine(points_max, "orange", 10);
+    AddKey([
+        { colour: "blue", label: "Projectile" },
+        { colour: "orange", label: "Max range" },
+    ]);
 }
 CURRENT_CHALLENGE();

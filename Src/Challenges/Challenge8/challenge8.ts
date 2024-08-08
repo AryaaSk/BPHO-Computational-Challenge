@@ -1,3 +1,7 @@
+// TODO:
+// if you change sliders during animation causes errors
+declare const FFmpeg: any;
+
 const Challenge8Parameters = {
     //Parameters required for challenge
     u: 5,
@@ -7,7 +11,7 @@ const Challenge8Parameters = {
     C: 0.7,
     N: 6,
 
-    timeStep: 0.01
+    timeStep: 0.04
 }
 
 InitSliderForKey(Challenge8Parameters, "theta", "Launch Angle (X degrees)", { min: 0, max: 90, step: 1 });
@@ -21,7 +25,8 @@ const canvas = new Canvas();
 canvas.linkCanvas("canvas");
 canvas.CalculateConversionFactors();
 
-CURRENT_CHALLENGE = () => {
+let interval: number | undefined = undefined; //to prevent multiple animations from occuring at once
+CURRENT_CHALLENGE = async () => {
     //we want to determine the path this projectile will take, continuing until reaching N bounces.
     const { u, theta, h, g, C, N, timeStep } = Challenge8Parameters;
     
@@ -59,13 +64,49 @@ CURRENT_CHALLENGE = () => {
 
         t += timeStep;
 
-        canvas.MAX_X = Math.max(15, horizontalDisplacement + 1)
-        canvas.MAX_Y = Math.max(15, verticalDisplacement + 1)
+        canvas.MAX_X = Math.max(15, horizontalDisplacement + 1);
+        canvas.MAX_Y = Math.max(15, verticalDisplacement + 1);
     }
     canvas.CalculateConversionFactors();
 
     canvas.clearCanvas();
     canvas.DrawAxis();
-    canvas.DrawLine(points, "blue", 3);
+
+    //to provide a downloadadble video for the user, we need to record the animation as it occurs on the canvas and present it within a video element
+    const downloadLink = document.getElementById("download")! as HTMLAnchorElement; 
+    downloadLink.style.display = "none";
+
+    const stream = canvas.canvas.captureStream(25);
+    const mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/mp4' });
+
+    const recordedChunks: Blob[] = [];
+    mediaRecorder.ondataavailable = ($e) => {
+        recordedChunks.push($e.data);
+    };
+
+    // Chrome requires we draw on the canvas while recording
+    mediaRecorder.start();
+    mediaRecorder.onstart = () => {
+        //provide an animation delay to create animated effect of ball tracing out path
+        if (interval != undefined) { //stop any previous animation
+            clearInterval(interval);
+        }
+        interval = canvas.DrawLine(points, "blue", 3, 9, () => {
+            mediaRecorder.stop();
+        });
+    }
+
+    // wait for the stop event to export the final video
+    // the dataavailable can fire before
+    mediaRecorder.onstop = async () => {
+        const blob = new Blob(recordedChunks, {
+            type: "video/webm"
+        });
+
+        var url = URL.createObjectURL(blob);
+        downloadLink.style.display = "";
+        downloadLink.href = url;
+        downloadLink.download = "challenge8.webm"
+    }
 }
 CURRENT_CHALLENGE();

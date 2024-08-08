@@ -20,7 +20,7 @@ canvas.linkCanvas("canvas");
 canvas.CalculateConversionFactors();
 
 // Function to solve quadratic and linear equations
-function solve(a: number, b: number, c: number): number[] {
+function solve_3(a: number, b: number, c: number): number[] {
     if (a === 0) {
         if (b !== 0) {
             return [-c / b];
@@ -62,7 +62,7 @@ CURRENT_CHALLENGE = () => {
     const a = g * (X ** 2) / (2 * (launch_speed ** 2));
     const b = -X;
     const c = Y - h + a;
-    const solutions = solve(a, b, c);
+    const solutions = solve_3(a, b, c);
 
     const slider = document.getElementById("u")! as HTMLInputElement;
     slider.min = String(Math.round(min_speed * 10) / 10);
@@ -122,5 +122,11 @@ CURRENT_CHALLENGE = () => {
 
     // plot minimum projectile speed
     canvas.DrawLine(points_min, "grey", 5);
+
+    AddKey([
+        { colour: "blue", label: "High ball" },
+        { colour: "grey", label: "Min u" },
+        { colour: "orange", label: "Low ball" }
+    ]);
 }
 CURRENT_CHALLENGE();

@@ -133,5 +133,14 @@ With these functions, you can process and plot the data supplied by parameters w
 
 Look at the code within [Challenge 1](Src/Challenges/Challenge1) as an example.
 
+For a few challenges you will plot multiple lines and should label them individually with a key. An example from challenge 3 is shown below, you just need to the pass the colour and name of the line.
+```typescript
+AddKey([
+    { colour: "blue", label: "High ball" },
+    { colour: "grey", label: "Min u" },
+    { colour: "orange", label: "Low ball" }
+]);
+```
+
 ### Running locally
 To run the webpage locally and build to dist, follow the instructions [here](https://github.com/AryaaSk/Vanilla-Template)
