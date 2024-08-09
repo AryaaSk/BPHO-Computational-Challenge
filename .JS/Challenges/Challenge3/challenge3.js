@@ -17,7 +17,7 @@ const canvas = new Canvas();
 canvas.linkCanvas("canvas");
 canvas.CalculateConversionFactors();
 // Function to solve quadratic and linear equations
-function solve(a, b, c) {
+function solve_3(a, b, c) {
     if (a === 0) {
         if (b !== 0) {
             return [-c / b];
@@ -45,6 +45,7 @@ CURRENT_CHALLENGE = () => {
     const points_low = []; // low ball points
     const points_high = []; // high ball points
     const points_min = []; // min. speed points
+    const points_bounding = []; // bounding parab points
     const g = Challenge3Parameters.g;
     const X = Challenge3Parameters.x;
     const Y = Challenge3Parameters.y;
@@ -57,7 +58,7 @@ CURRENT_CHALLENGE = () => {
     const a = g * (X ** 2) / (2 * (launch_speed ** 2));
     const b = -X;
     const c = Y - h + a;
-    const solutions = solve(a, b, c);
+    const solutions = solve_3(a, b, c);
     const slider = document.getElementById("u");
     slider.min = String(Math.round(min_speed * 10) / 10);
     if (Number(slider.value) < min_speed) {
@@ -71,8 +72,18 @@ CURRENT_CHALLENGE = () => {
     const y = (x, tan_theta, u) => {
         return tan_theta * x - (g / (2 * u ** 2)) * (1 + tan_theta ** 2) * x ** 2 + h;
     };
+    const y_bounding = (x, u) => {
+        return ((u ** 2) / (2 * g)) - (g / (2 * u ** 2)) * x ** 2 + h;
+    };
     for (let x_min = 0; x_min <= X; x_min += X / 100) {
         points_min.push([x_min, y(x_min, tan_theta_min, min_speed)]);
+    }
+    for (let x_bound = 0; x_bound <= X * 5; x_bound += X / 100) {
+        const y_coord = y_bounding(x_bound, launch_speed);
+        points_bounding.push([x_bound, y_coord]);
+        if (y_coord == 0) {
+            break;
+        }
     }
     if (solutions.length === 2) {
         tan_theta_low = solutions[0];
@@ -86,7 +97,7 @@ CURRENT_CHALLENGE = () => {
         }
     }
     // only need to keep target x and y in view
-    canvas.MAX_X = parseFloat((X * 1.2).toPrecision(2));
+    canvas.MAX_X = 2000;
     // calculate max y based on the y values in points arrays
     canvas.MAX_Y = parseFloat((Math.max(...points_high.map(point => point[1])) * 1.2).toPrecision(2));
     // avoid clutter
@@ -105,10 +116,12 @@ CURRENT_CHALLENGE = () => {
     }
     // plot minimum projectile speed
     canvas.DrawLine(points_min, "grey", 5);
+    canvas.DrawLine(points_bounding, "green", 5);
     AddKey([
         { colour: "blue", label: "High ball" },
         { colour: "grey", label: "Min u" },
-        { colour: "orange", label: "Low ball" }
+        { colour: "orange", label: "Low ball" },
+        { colour: "green", label: "Bounding parabola" }
     ]);
 };
 CURRENT_CHALLENGE();
