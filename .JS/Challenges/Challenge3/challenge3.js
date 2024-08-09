@@ -17,7 +17,7 @@ const canvas = new Canvas();
 canvas.linkCanvas("canvas");
 canvas.CalculateConversionFactors();
 // Function to solve quadratic and linear equations
-function solve(a, b, c) {
+function solve_3(a, b, c) {
     if (a === 0) {
         if (b !== 0) {
             return [-c / b];
@@ -57,7 +57,7 @@ CURRENT_CHALLENGE = () => {
     const a = g * (X ** 2) / (2 * (launch_speed ** 2));
     const b = -X;
     const c = Y - h + a;
-    const solutions = solve(a, b, c);
+    const solutions = solve_3(a, b, c);
     const slider = document.getElementById("u");
     slider.min = String(Math.round(min_speed * 10) / 10);
     if (Number(slider.value) < min_speed) {

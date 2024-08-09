@@ -1,7 +1,7 @@
 "use strict";
 const Challenge9Parameters = {
     angle: 30,
-    g: 9.8, //not taking g as negative (handled in calculations)
+    g: 9.8,
     speed: 20,
     height: 2,
     dragCoefficient: 1,

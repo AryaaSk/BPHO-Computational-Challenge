@@ -11,6 +11,7 @@ InitSliderForKey(Challenge4Parameters, "g", "Gravitational Field Strength (-X ms
 InitSliderForKey(Challenge4Parameters, "speed", "Launch Speed (X ms-1)", { min: 1, max: 15, step: 0.1 });
 InitSliderForKey(Challenge4Parameters, "height", "Launch Height (X m)", { min: 0, max: 10, step: 0.1 });
 // Function to solve quadratic and linear equations
+//@ts-expect-error
 function solve_4(a, b, c) {
     if (a === 0) {
         if (b !== 0) {

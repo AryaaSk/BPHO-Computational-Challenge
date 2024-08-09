@@ -14,3 +14,7 @@
     background-color: red;
     display: inline-block;
 }
+
+.selected {
+    text-decoration: underline;
+}

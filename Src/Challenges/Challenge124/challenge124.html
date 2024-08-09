@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge 1, 2 and 4</title>
+
+    <script src="/.JS/Utilities/native.js"></script>
+    <script src="/.JS/Utilities/canvasUtilities.js"></script>
+    <script src="/.JS/Challenges/challengeUtilities.js"></script>
+    <script src="/.JS/Utilities/challengeSetup.js" defer></script>
+    
+    <link rel="stylesheet" href="/Src/Utilities/native.css">
+    <link rel="stylesheet" href="/Src/Utilities/challenge.css">
+
+    <script src="/.JS/Challenges/Challenge124/challenge124.js" defer></script>
+</head>
+<body ontouchstart class="noTabBar">
+    <div class="navigation-bar">
+        <div class="leftButtons">
+            <button class="button" id="back">Back</button>
+        </div>
+        <div><label>Challenge 1, 2 and 4</label></div>
+        <div class="rightButtons"></div>
+    </div>
+    
+    <div class="main">
+        <div id="parameters">
+            <!-- Parameters added dynamically within JS -->
+        </div>
+
+        <br>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <button class="button selected" id="challenge1">Challenge 1</button>
+            <button class="button" id="challenge2">Challenge 2</button>
+            <button class="button" id="challenge4">Challenge 4</button>
+        </div>
+        
+        <!-- Every page comes within an inbuilt canvas -->
+        <canvas id="canvas"></canvas>
+    </div>
+</body>
+</html>

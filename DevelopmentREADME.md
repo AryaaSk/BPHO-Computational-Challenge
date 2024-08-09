@@ -127,11 +127,14 @@ canvas.DrawAxis(); //draws positive x and y axis dependant on view window
 //To adjust the view window, you can adjust the MIN_X, MIN_Y, MAX_X and MAX_Y attributes of the canvas
 canvas.MAX_X = 30;
 canvas.CalculateConversionFactors(); //whenever adjusting the view window, you need to call this method to re-calculate the conversion factors used when displaying points
+
+const points: number[][] = [[100, 100], [50, 50]];
+canvas.MaximiseViewWindow(points); //this function will update the MAX_X and MAX_Y attributes on the canvas to include all the points passed. Will also call CalculateConversionfactors within it.
 ```
 
 With these functions, you can process and plot the data supplied by parameters within the CURRENT_CHALLENGE function and subsequently complete a new challenge.
 
-Look at the code within [Challenge 1](Src/Challenges/Challenge1) as an example.
+Look at the code within [Challenge 1](Src/Challenges/Legacy/Challenge1) as an example.
 
 For a few challenges you will plot multiple lines and should label them individually with a key. An example from challenge 3 is shown below, you just need to the pass the colour and name of the line.
 ```typescript
@@ -141,6 +144,51 @@ AddKey([
     { colour: "orange", label: "Low ball" }
 ]);
 ```
+
+
+### Instructions for adding multiple challenges in the same scene
+Some challenges such as 1,2,4 and 3,5,6 take in the same inputs and output marginally different results. For these, it's best to reduce clutter and display them in a single scene.
+
+I will use the scene for challenges 1,2,4 as an example.
+
+First create a new scene as if you were adding as new challenge (challenge124.html and challenge124.ts), importing all boilerplate as usual.
+
+Create a challenge toggle HTML element within the 'main' container.
+```html
+<br>
+<div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+    <button class="button selected" id="challenge1">Challenge 1</button>
+    <button class="button" id="challenge2">Challenge 2</button>
+    <button class="button" id="challenge4">Challenge 4</button>
+</div>
+```
+
+Create separate callbacks for each challenge (you can use the same code as you would put in the CURRENT_CHALLENGE function).
+```typescript
+const Challenge1 = () => {
+    //code for challenge 1...
+}
+const Challenge2 = () => {
+    //code for challenge 2...
+}
+const Challenge4 = () => {
+    //code for challenge 4...
+}
+```
+
+Right before CURRENT_CHALLENGE is called, call the InitChallengeToggle() function, which takes in an array of objects specifying the ids of the buttons created earlier and their respective callbacks.
+```typescript
+InitChallengeToggle([
+    { buttonID: "challenge1", challengeCallback: Challenge1 },
+    { buttonID: "challenge2", challengeCallback: Challenge2 },
+    { buttonID: "challenge4", challengeCallback: Challenge4 },
+]);
+
+CURRENT_CHALLENGE = Challenge1; //Challenge1 is run by default
+CURRENT_CHALLENGE();
+```
+
+You can look at the code within [Challenge 1,2,4](Src/Challenges/Challenge124) as an example
 
 ### Running locally
 To run the webpage locally and build to dist, follow the instructions [here](https://github.com/AryaaSk/Vanilla-Template)

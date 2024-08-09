@@ -66,4 +66,25 @@ const AddKey = (key) => {
         keyContainer.append(element);
     }
 };
+const InitChallengeToggle = (challenges) => {
+    const buttons = [];
+    for (const challenge of challenges) {
+        buttons.push(document.getElementById(challenge.buttonID));
+    }
+    ;
+    const ResetAllButtonsCSS = () => {
+        for (const button of buttons) {
+            button.className = "button";
+        }
+    };
+    for (const [i, challenge] of challenges.entries()) {
+        const button = buttons[i]; //same index since buttons array is mapped to by challenges
+        button.onclick = () => {
+            ResetAllButtonsCSS();
+            button.className += " selected"; //to show the current challenge selected
+            CURRENT_CHALLENGE = challenge.challengeCallback;
+            CURRENT_CHALLENGE();
+        };
+    }
+};
 InitBackButton();

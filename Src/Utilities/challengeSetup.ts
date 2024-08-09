@@ -81,4 +81,29 @@ const AddKey = (key: { colour: string, label: string }[]) => {
 
 
 
+const InitChallengeToggle = (challenges: { buttonID: string, challengeCallback: () => void }[]) => {
+    const buttons: HTMLButtonElement[] = [];
+    for (const challenge of challenges) {
+        buttons.push(document.getElementById(challenge.buttonID)! as HTMLButtonElement);
+    };
+
+    const ResetAllButtonsCSS = () => {
+        for (const button of buttons) {
+            button.className = "button";
+        }
+    }
+
+    for (const [i, challenge] of challenges.entries()) {
+        const button = buttons[i]; //same index since buttons array is mapped to by challenges
+        button.onclick = () => {
+            ResetAllButtonsCSS();
+            button.className += " selected"; //to show the current challenge selected
+            CURRENT_CHALLENGE = challenge.challengeCallback;
+            CURRENT_CHALLENGE();
+        }
+    }
+}
+
+
+
 InitBackButton();
