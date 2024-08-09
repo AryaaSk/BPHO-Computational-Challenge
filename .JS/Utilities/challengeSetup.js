@@ -25,6 +25,7 @@ const InitSliderForKey = (parameters, key, template, sliderOptions) => {
     //add a input:range into the div with class 'parameters'
     const parent = document.getElementById("parameters");
     const row = document.createElement("div");
+    row.className = "parameterWrapper";
     const label = document.createElement("label");
     const slider = document.createElement("input");
     slider.type = "range";
@@ -72,6 +73,13 @@ const InitChallengeToggle = (challenges) => {
         buttons.push(document.getElementById(challenge.buttonID));
     }
     ;
+    const RemoveKeyIfPresent = () => {
+        const keyContainer = document.getElementById("key");
+        if (keyContainer == null) {
+            return;
+        }
+        keyContainer.remove();
+    };
     const ResetAllButtonsCSS = () => {
         for (const button of buttons) {
             button.className = "button";
@@ -81,10 +89,17 @@ const InitChallengeToggle = (challenges) => {
         const button = buttons[i]; //same index since buttons array is mapped to by challenges
         button.onclick = () => {
             ResetAllButtonsCSS();
+            RemoveKeyIfPresent();
             button.className += " selected"; //to show the current challenge selected
             CURRENT_CHALLENGE = challenge.challengeCallback;
             CURRENT_CHALLENGE();
         };
     }
+};
+const InitAxisTitle = (x, y) => {
+    const xAxis = document.getElementById("xAxis");
+    xAxis.innerText = x;
+    const yAxis = document.getElementById("yAxis");
+    yAxis.innerText = y;
 };
 InitBackButton();

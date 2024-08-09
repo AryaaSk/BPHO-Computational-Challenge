@@ -46,6 +46,7 @@ const Challenge1 = () => {
     canvas.MAX_X = 15;
     canvas.MAX_Y = 15;
     canvas.MaximiseViewWindow(points);
+    canvas.AdjustIntervals();
 
     canvas.clearCanvas();
     canvas.DrawAxis();
@@ -92,6 +93,7 @@ const Challenge2 = () => {
     canvas.MAX_X = 15;
     canvas.MAX_Y = 15;
     canvas.MaximiseViewWindow(points);
+    canvas.AdjustIntervals();
 
     //challenge 2 also requires us to plot the apogee (point with greatest y coordinate)
     //the apogee is just the turning point, and thus will occur when x = -b/2a and y = y(-b/2a)
@@ -178,6 +180,7 @@ const Challenge4 = () => {
     canvas.MAX_Y = 15;
     canvas.MaximiseViewWindow(points);
     canvas.MaximiseViewWindow(points_max);
+    canvas.AdjustIntervals();
 
     canvas.clearCanvas();
     canvas.DrawAxis();
@@ -200,5 +203,6 @@ InitChallengeToggle([
     { buttonID: "challenge4", challengeCallback: Challenge4 },
 ]);
 
+InitAxisTitle("x/m", "y/m")
 CURRENT_CHALLENGE = Challenge1;
 CURRENT_CHALLENGE();

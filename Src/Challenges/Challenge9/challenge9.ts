@@ -74,9 +74,6 @@ CURRENT_CHALLENGE = () => {
     const airResistancePoints = GeneratePoints(p.angle, p.speed, p.height, p.g, p.dragCoefficient, p.crossSectionalArea, p.airDensity, p.mass, p.timeStep);
     const dragFreePoints = GeneratePoints(p.angle, p.speed, p.height, p.g, 0, p.crossSectionalArea, p.airDensity, p.mass, p.timeStep);
 
-    //max X will always be the final point of the air resistance free model
-    canvas.MAX_X = Math.max(15, (Math.ceil(dragFreePoints[dragFreePoints.length - 1][0] / 10) * 10))
-
     //find the 'apogee' for both air resistance and drag free points
     let apogeeAirResistance = [0, 0];
     let apogeeDragFree = [0, 0];
@@ -92,11 +89,11 @@ CURRENT_CHALLENGE = () => {
             apogeeDragFree = point;
         }
     }
-
-    canvas.MAX_Y = Math.max(15, apogeeDragFree[1] + 2);
-
-    canvas.xStep = parseFloat((canvas.MAX_X / 10).toPrecision(2));
-    canvas.CalculateConversionFactors();
+    canvas.MAX_X = 15;
+    canvas.MAX_Y = 15;
+    canvas.MaximiseViewWindow(airResistancePoints);
+    canvas.MaximiseViewWindow(dragFreePoints);
+    canvas.AdjustIntervals();
 
     canvas.clearCanvas();
     canvas.DrawAxis();

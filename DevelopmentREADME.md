@@ -62,7 +62,12 @@ Place this HTML code within challengeX.html (commented where to change)
         </div>
 
         <!-- Every page comes within an inbuilt canvas -->
-        <canvas id="canvas"></canvas>
+        <div class="canvasWrapper">
+            <label id="yAxis">Y Axis</label>
+            <canvas id="canvas"></canvas>
+            <div></div>
+            <label id="xAxis">X Axis</label>
+        </div>
     </div>
 </body>
 </html>
@@ -130,11 +135,13 @@ canvas.CalculateConversionFactors(); //whenever adjusting the view window, you n
 
 const points: number[][] = [[100, 100], [50, 50]];
 canvas.MaximiseViewWindow(points); //this function will update the MAX_X and MAX_Y attributes on the canvas to include all the points passed. Will also call CalculateConversionfactors within it.
+
+canvas.AdjustIntervals(); //to declutter the intervals by deciding on a good step size
 ```
 
 With these functions, you can process and plot the data supplied by parameters within the CURRENT_CHALLENGE function and subsequently complete a new challenge.
 
-Look at the code within [Challenge 1](Src/Challenges/Legacy/Challenge1) as an example.
+Look at the code within [Challenge 9](Src/Challenges/Challenge9) as an example.
 
 For a few challenges you will plot multiple lines and should label them individually with a key. An example from challenge 3 is shown below, you just need to the pass the colour and name of the line.
 ```typescript
@@ -143,6 +150,11 @@ AddKey([
     { colour: "grey", label: "Min u" },
     { colour: "orange", label: "Low ball" }
 ]);
+```
+
+Finally, make sure all graphs have an axis label. This can be done when the challenge is called or simply once when the scene is loaded.
+```typescript
+InitAxisTitle("x/m", "y/m")
 ```
 
 

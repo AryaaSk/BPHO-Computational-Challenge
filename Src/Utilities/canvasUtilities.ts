@@ -36,11 +36,13 @@ class Canvas {
         return -((screenY) - (this.canvasHeight / 2));
     }
 
-    plotPoint = (p: number[], colour: string, label?: string) => {
+    plotPoint = (p: number[], colour: string, label?: string, labelOnly?: boolean) => {
         if (this.c == undefined) { console.error("Cannot draw, canvas is not linked, please use the linkCanvas(canvasID) before rendering any shapes"); return; }
         //point will be in format: [x, y]
         this.c.fillStyle = colour;
-        this.c.fillRect(this.ScreenX(p[0]), this.ScreenY(p[1]), 10, 10);
+        if (labelOnly != true) {
+            this.c.fillRect(this.ScreenX(p[0]), this.ScreenY(p[1]), 10, 10);
+        }
 
         if (label != undefined) {
             this.c.font = `${20 * dpi}px Arial`;
@@ -90,9 +92,9 @@ class Canvas {
 
 
     //adding in some intermediary functions
-    MIN_X = -1;
+    MIN_X = -1.2;
     MAX_X = 15;
-    MIN_Y = -1;
+    MIN_Y = -1.2;
     MAX_Y = 15;
 
     midX = 0;
@@ -103,6 +105,7 @@ class Canvas {
     // adding in step x and step y
     xStep = 1;
     yStep = 1;
+    intervalSpacingPixels = 42;
 
     CalculateConversionFactors = () => {
         this.midX = 0.5 * (this.MAX_X + this.MIN_X)
@@ -115,13 +118,13 @@ class Canvas {
         return [this.xScale * (x - this.midX), this.yScale * (y - this.midY)];
     }
 
-    PlotPoint = (point: number[], colour: string, label?: string, offset?: { x: number, y: number }) => {
+    PlotPoint = (point: number[], colour: string, label?: string, offset?: { x: number, y: number }, labelOnly?: boolean) => {
         const transformedPoint = this.TransformPoint(point);
         if (offset != undefined) {
             transformedPoint[0] += offset.x;
             transformedPoint[1] += offset.y;
         }
-        this.plotPoint(transformedPoint, colour, label);
+        this.plotPoint(transformedPoint, colour, label, labelOnly);
     }
 
     ////to create animation, we can plot the points one by one with a small delay between each point
@@ -158,12 +161,12 @@ class Canvas {
     
     DrawAxis = () => {
         //draw the positive x and y axis from 0 to MAX_X/MAX_Y - 1
-        this.DrawLine([[0, 0], [this.MAX_X - 1, 0]], "black", 3);
+        this.DrawLine([[0, 0], [this.MAX_X, 0]], "black", 3);
         for (let x = 0; x < this.MAX_X; x += this.xStep) {
-            this.PlotPoint([x, 0], "grey", String(x))
+            this.PlotPoint([x, 0], "grey", String(x), undefined, true)
         }
     
-        this.DrawLine([[0, 0], [0, this.MAX_Y - 1]], "black", 3);
+        this.DrawLine([[0, 0], [0, this.MAX_Y]], "black", 3);
         // changed from let y = 1 to y = 0 because otherwise the intervals are weird
         for (let y = 0; y < this.MAX_Y; y += this.yStep) {
             this.PlotPoint([0, y], "grey", String(y))
@@ -181,5 +184,45 @@ class Canvas {
             }
         }
         this.CalculateConversionFactors();
+    }
+
+    AdjustIntervals = () => {
+        //there should always be around 35 pixels between adjacent intervals on the grid
+        //if MAX_X becomes very high, then with an xStep of 1 there will be too many intervals
+
+        //number of intervals is approximately MAX_X / xStep
+        //desired number of intervals = canvasWidth / 35
+        //therefore we can set xStep = 35 * MAX_X / canvasWidth
+
+        const rawXStep = Math.round(this.intervalSpacingPixels * this.MAX_X / this.canvasWidth);
+        const rawYStep = Math.round(this.intervalSpacingPixels * this.MAX_Y / this.canvasHeight);
+
+        //now we also want to make sure x step goes up insensible increments
+        //e.g. 1, 2, 4, 5, 10, 20, 40, 50 ...
+        //therefore we need to first select the starting digit (take starting digit of xStep and match to closest of the available options)
+        //we also need to decide on the magnitude of the step: 1, 10, 100, etc...
+        function FindClosestNumber(numbers: number[], target: number): number {
+            if (numbers.length === 0) {
+                throw new Error("The list of numbers cannot be empty.");
+            }
+        
+            return numbers.reduce((closest, num) => {
+                return Math.abs(num - target) < Math.abs(closest - target) ? num : closest;
+            });
+        }
+
+        const MakeStepSensible = (rawStep: number) => {
+            const firstDigit = FindClosestNumber([1, 2, 4, 5], Number(String(rawStep)[0]));
+            let magnitude = 1;
+            while (magnitude * 10 <= rawStep) {
+                magnitude *= 10;
+            }
+
+            const step = firstDigit * magnitude;
+            return step;
+        }
+
+        this.xStep = MakeStepSensible(rawXStep);
+        this.yStep = MakeStepSensible(rawYStep);
     }
 }
