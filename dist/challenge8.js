@@ -85,5 +85,5 @@ CURRENT_CHALLENGE = async () => {
         downloadLink.download = "challenge8.webm";
     };
 };
-CURRENT_CHALLENGE();
 InitAxisTitle("x/m", "y/m");
+setTimeout(CURRENT_CHALLENGE);

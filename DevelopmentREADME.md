@@ -89,9 +89,10 @@ canvas.CalculateConversionFactors();
 CURRENT_CHALLENGE = () => {
     //Code for challenge goes here
 }
-CURRENT_CHALLENGE();
 
 InitAxisTitle("x/m", "y/m");
+
+setTimeout(CURRENT_CHALLENGE);
 ```
 
 ### Parameters
@@ -199,7 +200,7 @@ InitChallengeToggle([
 ]);
 
 CURRENT_CHALLENGE = Challenge1; //Challenge1 is run by default
-CURRENT_CHALLENGE();
+setTimeout(CURRENT_CHALLENGE);
 ```
 
 You can look at the code within [Challenge 1,2,4](Src/Challenges/Challenge124) as an example

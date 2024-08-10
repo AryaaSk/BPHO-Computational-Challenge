@@ -109,6 +109,7 @@ CURRENT_CHALLENGE = () => {
         { colour: "blue", label: "No Air Resistance" },
     ]);
 }
-CURRENT_CHALLENGE();
 
 InitAxisTitle("x/m", "y/m")
+
+setTimeout(CURRENT_CHALLENGE);
