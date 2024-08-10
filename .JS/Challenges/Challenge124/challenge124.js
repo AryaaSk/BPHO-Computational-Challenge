@@ -11,6 +11,7 @@ InitSliderForKey(Challenge124Parameters, "angle", "Launch Angle (X degrees)", { 
 InitSliderForKey(Challenge124Parameters, "g", "Gravitational Field Strength (-X ms-2)", { min: 1, max: 15, step: 0.1 });
 InitSliderForKey(Challenge124Parameters, "speed", "Launch Speed (X ms-1)", { min: 1, max: 15, step: 0.1 });
 InitSliderForKey(Challenge124Parameters, "height", "Launch Height (X m)", { min: 0, max: 10, step: 0.1 });
+InitInfo("Description of challenge 1, 2 and 4");
 //@ts-expect-error
 const canvas = new Canvas();
 canvas.linkCanvas("canvas");

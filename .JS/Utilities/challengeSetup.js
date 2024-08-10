@@ -102,4 +102,14 @@ const InitAxisTitle = (x, y) => {
     const yAxis = document.getElementById("yAxis");
     yAxis.innerText = y;
 };
+const InitInfo = (info) => {
+    const infoButton = document.createElement("button");
+    infoButton.className = "button";
+    infoButton.innerText = "ⓘ";
+    const rightBarButtonContainer = document.getElementsByClassName("rightButtons")[0];
+    rightBarButtonContainer.append(infoButton);
+    infoButton.onclick = () => {
+        alert(info);
+    };
+};
 InitBackButton();
