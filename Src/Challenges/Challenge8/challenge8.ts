@@ -14,9 +14,9 @@ const Challenge8Parameters = {
     timeStep: 0.04
 }
 
-InitSliderForKey(Challenge8Parameters, "theta", "Launch Angle (X degrees)", { min: 0, max: 90, step: 1 });
-InitSliderForKey(Challenge8Parameters, "u", "Launch Speed (X ms-1)", { min: 1, max: 15, step: 0.1 });
-InitSliderForKey(Challenge8Parameters, "h", "Launch Height (X m)", { min: 0, max: 10, step: 0.1 });
+InitSliderForKey(Challenge8Parameters, "theta", "Launch Angle (X degrees)", { min: 0, max: 90, step: 5 });
+InitSliderForKey(Challenge8Parameters, "u", "Launch Speed (X ms-1)", { min: 1, max: 15, step: 0.5 });
+InitSliderForKey(Challenge8Parameters, "h", "Launch Height (X m)", { min: 0, max: 10, step: 0.5 });
 InitSliderForKey(Challenge8Parameters, "C", "Coefficient of Restitution (X)", { min: 0, max: 1, step: 0.1 });
 InitSliderForKey(Challenge8Parameters, "N", "Number of Bounces (X)", { min: 1, max: 10, step: 1 });
 
@@ -63,11 +63,11 @@ CURRENT_CHALLENGE = async () => {
         points.push([horizontalDisplacement, verticalDisplacement]);
 
         t += timeStep;
-
-        canvas.MAX_X = Math.max(15, horizontalDisplacement + 1);
-        canvas.MAX_Y = Math.max(15, verticalDisplacement + 1);
     }
-    canvas.CalculateConversionFactors();
+    canvas.MAX_X = 15;
+    canvas.MAX_Y = 15;
+    canvas.MaximiseViewWindow(points);
+    canvas.AdjustIntervals();
 
     canvas.clearCanvas();
     canvas.DrawAxis();
@@ -110,3 +110,5 @@ CURRENT_CHALLENGE = async () => {
     }
 }
 CURRENT_CHALLENGE();
+
+InitAxisTitle("x/m", "y/m")

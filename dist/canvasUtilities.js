@@ -174,4 +174,15 @@ class Canvas {
             this.PlotPoint([0, y], "grey", String(y));
         }
     };
+    MaximiseViewWindow = (points) => {
+        for (const point of points) {
+            if (point[0] + 1 > this.MAX_X) { //points get an offset of 1, as otherwise they'd be right on the edge of the canvas
+                this.MAX_X = point[0] + 1;
+            }
+            if (point[1] + 1 > this.MAX_Y) {
+                this.MAX_Y = point[1] + 1;
+            }
+        }
+        this.CalculateConversionFactors();
+    };
 }

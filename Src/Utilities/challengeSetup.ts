@@ -30,6 +30,7 @@ const InitSliderForKey = (parameters: { [key: string]: number }, key: string, te
     const parent = document.getElementById("parameters")!;
     
     const row = document.createElement("div");
+    row.className = "parameterWrapper"
     const label = document.createElement("label");
     const slider = document.createElement("input") as HTMLInputElement;
 
@@ -77,6 +78,49 @@ const AddKey = (key: { colour: string, label: string }[]) => {
         element.innerHTML = `<div class="line" style="background-color: ${item.colour}; "></div> ${item.label}`;
         keyContainer!.append(element);
     }
+}
+
+
+
+const InitChallengeToggle = (challenges: { buttonID: string, challengeCallback: () => void }[]) => {
+    const buttons: HTMLButtonElement[] = [];
+    for (const challenge of challenges) {
+        buttons.push(document.getElementById(challenge.buttonID)! as HTMLButtonElement);
+    };
+
+    const RemoveKeyIfPresent = () => { //if there is a key present from a previous challenge, we should remove it
+        const keyContainer = document.getElementById("key");
+        if (keyContainer == null) {
+            return;
+        }
+
+        keyContainer.remove();
+    }
+
+    const ResetAllButtonsCSS = () => {
+        for (const button of buttons) {
+            button.className = "button";
+        }
+    }
+
+    for (const [i, challenge] of challenges.entries()) {
+        const button = buttons[i]; //same index since buttons array is mapped to by challenges
+        button.onclick = () => {
+            ResetAllButtonsCSS();
+            RemoveKeyIfPresent();
+            button.className += " selected"; //to show the current challenge selected
+            CURRENT_CHALLENGE = challenge.challengeCallback;
+            CURRENT_CHALLENGE();
+        }
+    }
+}
+
+const InitAxisTitle = (x: string, y: string) => {
+    const xAxis = document.getElementById("xAxis")!;
+    xAxis.innerText = x;
+
+    const yAxis = document.getElementById("yAxis")!;
+    yAxis.innerText = y;
 }
 
 

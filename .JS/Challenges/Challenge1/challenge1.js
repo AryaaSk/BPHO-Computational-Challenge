@@ -31,11 +31,10 @@ CURRENT_CHALLENGE = () => {
         }
         points.push([x, y]);
         t += Challenge1Parameters.timeStep;
-        //calculate new view window based on max X and max Y of these points
-        canvas.MAX_X = Math.max(15, x + 1);
-        canvas.MAX_Y = Math.max(15, y + 1);
     }
-    canvas.CalculateConversionFactors();
+    canvas.MAX_X = 15;
+    canvas.MAX_Y = 15;
+    canvas.MaximiseViewWindow(points);
     canvas.clearCanvas();
     canvas.DrawAxis();
     canvas.DrawLine(points, "blue", 10);

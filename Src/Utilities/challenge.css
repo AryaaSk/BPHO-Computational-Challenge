@@ -2,6 +2,38 @@
     text-align: center;
 }
 
+
+
+.parameterWrapper {
+    height: 42px;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.parameterWrapper > label {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.canvasWrapper {
+    width: 90%;
+    height: max-content;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: max-content auto;
+    grid-template-rows: auto max-content;
+}
+#yAxis {
+    writing-mode: tb-rl;
+    transform: rotate(-180deg);
+}
+
 #canvas {
     height: 300px;
     width: 90%;
@@ -13,4 +45,8 @@
     width: 63px;
     background-color: red;
     display: inline-block;
+}
+
+.selected {
+    text-decoration: underline;
 }
