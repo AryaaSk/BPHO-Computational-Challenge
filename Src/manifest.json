@@ -1,10 +1,10 @@
 {
     "name": "BPHO Computational Challenge",
-    "short_name": "BPHO",
+    "short_name": "BPHO CC",
     "description": "An app to encapslate our submission to the 2024 BPHO Computational Challenge",
     "icons": [
       {
-        "src": "Icon.png",
+        "src": "Assets/Icon.png",
         "sizes": "1024x1024",
         "type": "image/png"
       }
