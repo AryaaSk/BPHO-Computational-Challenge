@@ -85,14 +85,10 @@ CURRENT_CHALLENGE = () => {
             points_high.push([x_high, y(x_high, tan_theta_high, launch_speed)]);
         }
     }
-    // only need to keep target x and y in view
-    canvas.MAX_X = parseFloat((X * 1.2).toPrecision(2));
-    // calculate max y based on the y values in points arrays
-    canvas.MAX_Y = parseFloat((Math.max(...points_high.map(point => point[1])) * 1.2).toPrecision(2));
-    // avoid clutter
-    canvas.xStep = parseFloat((canvas.MAX_X / 10).toPrecision(2));
-    canvas.yStep = parseFloat((canvas.MAX_Y / 10).toPrecision(2));
-    canvas.CalculateConversionFactors();
+    canvas.MAX_X = 15;
+    canvas.MAX_Y = 15;
+    canvas.MaximiseViewWindow(points_high);
+    canvas.AdjustIntervals();
     const pointOffset = 5;
     canvas.clearCanvas();
     canvas.DrawAxis();
@@ -112,3 +108,4 @@ CURRENT_CHALLENGE = () => {
     ]);
 };
 CURRENT_CHALLENGE();
+InitAxisTitle("x/m", "y/m");

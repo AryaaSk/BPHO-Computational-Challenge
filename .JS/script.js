@@ -4,6 +4,7 @@ const CHALLENGES = [
     { name: "Challenge 3", HTMLFilePath: "/Src/Challenges/Challenge3/challenge3.html" },
     { name: "Challenge 5", HTMLFilePath: "/Src/Challenges/Challenge5/challenge5.html" },
     { name: "Challenge 6", HTMLFilePath: "/Src/Challenges/Challenge6/challenge6.html" },
+    { name: "Challenge 7", HTMLFilePath: "/Src/Challenges/Challenge7/challenge7.html" },
     { name: "Challenge 8", HTMLFilePath: "/Src/Challenges/Challenge8/challenge8.html" },
     { name: "Challenge 9", HTMLFilePath: "/Src/Challenges/Challenge9/challenge9.html" },
     { name: "Extension: Spherical Planet", HTMLFilePath: "/Src/Challenges/SphericalPlanet/sphericalPlanet.html" },

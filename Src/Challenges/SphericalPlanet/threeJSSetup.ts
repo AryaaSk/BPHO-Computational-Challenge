@@ -14,7 +14,7 @@ const camera = new THREE.PerspectiveCamera(
   1,
   10**8
 );
-camera.position.set(1.5e7, 1.5e7, 1.5e7);
+camera.position.set(1.2e7, 1.2e7, 1.2e7);
 camera.lookAt(scene.position);
 const renderer = new THREE.WebGLRenderer({
   antialias: true,
@@ -81,7 +81,7 @@ const launchCamera= new THREE.PerspectiveCamera(
   launchAngleCanvas.offsetWidth / launchAngleCanvas.offsetHeight,
   1,
 );
-launchCamera.position.set(0, 0, 3);
+launchCamera.position.set(0, 0, 2.5);
 launchCamera.lookAt(launchScene.position);
 
 const launchRenderer = new THREE.WebGLRenderer({

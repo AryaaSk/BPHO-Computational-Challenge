@@ -4,7 +4,7 @@ const R = 6.371 * 10 ** 6;
 const canvasElement = document.getElementById("canvas");
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, canvasElement.offsetWidth / canvasElement.offsetHeight, 1, 10 ** 8);
-camera.position.set(1.5e7, 1.5e7, 1.5e7);
+camera.position.set(1.2e7, 1.2e7, 1.2e7);
 camera.lookAt(scene.position);
 const renderer = new THREE.WebGLRenderer({
     antialias: true,
@@ -53,7 +53,7 @@ const SyncPosition = () => {
 const launchAngleCanvas = document.getElementById("launchAngleCanvas");
 const launchScene = new THREE.Scene();
 const launchCamera = new THREE.PerspectiveCamera(50, launchAngleCanvas.offsetWidth / launchAngleCanvas.offsetHeight, 1);
-launchCamera.position.set(0, 0, 3);
+launchCamera.position.set(0, 0, 2.5);
 launchCamera.lookAt(launchScene.position);
 const launchRenderer = new THREE.WebGLRenderer({
     antialias: true,

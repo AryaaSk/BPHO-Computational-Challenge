@@ -37,9 +37,10 @@ const Challenge1 = () => {
     canvas.MAX_X = 15;
     canvas.MAX_Y = 15;
     canvas.MaximiseViewWindow(points);
+    canvas.AdjustIntervals();
     canvas.clearCanvas();
     canvas.DrawAxis();
-    canvas.DrawLine(points, "blue", 10);
+    canvas.DrawLine(points, "blue", 5);
 };
 const Challenge2 = () => {
     //instead of using t as a parameter, we will elimate from this system and form an equation linking x and y
@@ -71,6 +72,7 @@ const Challenge2 = () => {
     canvas.MAX_X = 15;
     canvas.MAX_Y = 15;
     canvas.MaximiseViewWindow(points);
+    canvas.AdjustIntervals();
     //challenge 2 also requires us to plot the apogee (point with greatest y coordinate)
     //the apogee is just the turning point, and thus will occur when x = -b/2a and y = y(-b/2a)
     const apogeeX = -b / (2 * a);
@@ -78,7 +80,7 @@ const Challenge2 = () => {
     const pointOffset = 10; //line gets slightly raised due to thickness, so offset point to preven the point from looking out of place
     canvas.clearCanvas();
     canvas.DrawAxis();
-    canvas.DrawLine(points, "blue", 10);
+    canvas.DrawLine(points, "blue", 5);
     canvas.PlotPoint(apogee, "orange", "Apogee", { x: 0, y: pointOffset / 2 });
 };
 // Function to solve quadratic and linear equations
@@ -145,10 +147,11 @@ const Challenge4 = () => {
     canvas.MAX_Y = 15;
     canvas.MaximiseViewWindow(points);
     canvas.MaximiseViewWindow(points_max);
+    canvas.AdjustIntervals();
     canvas.clearCanvas();
     canvas.DrawAxis();
-    canvas.DrawLine(points, "blue", 10);
-    canvas.DrawLine(points_max, "orange", 10);
+    canvas.DrawLine(points, "blue", 5);
+    canvas.DrawLine(points_max, "orange", 5);
     AddKey([
         { colour: "blue", label: "Projectile" },
         { colour: "orange", label: "Max range" },
@@ -160,5 +163,6 @@ InitChallengeToggle([
     { buttonID: "challenge2", challengeCallback: Challenge2 },
     { buttonID: "challenge4", challengeCallback: Challenge4 },
 ]);
+InitAxisTitle("x/m", "y/m");
 CURRENT_CHALLENGE = Challenge1;
 CURRENT_CHALLENGE();
