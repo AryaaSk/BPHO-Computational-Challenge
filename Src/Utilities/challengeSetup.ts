@@ -123,6 +123,19 @@ const InitAxisTitle = (x: string, y: string) => {
     yAxis.innerText = y;
 }
 
+const InitInfo = (info: string) => {
+    const infoButton = document.createElement("button");
+    infoButton.className = "button";
+    infoButton.innerText = "ⓘ";
+
+    const rightBarButtonContainer = document.getElementsByClassName("rightButtons")[0];
+    rightBarButtonContainer.append(infoButton);
+
+    infoButton.onclick = () => {
+        alert(info);
+    }
+}
+
 
 
 InitBackButton();

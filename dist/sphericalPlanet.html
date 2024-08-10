@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="manifest" href="manifest.json">
+    <title>Spherical Planet</title>
+
+    <script src="native.js"></script>
+    <script src="canvasUtilities.js"></script>
+    <script src="challengeUtilities.js"></script>
+    <script src="challengeSetup.js" defer></script>
+    
+    <link rel="stylesheet" href="native.css">
+    <link rel="stylesheet" href="challenge.css">
+
+    <!-- ThreeJS -->
+    <script src="https://unpkg.com/three@0.139.2/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.139.2/examples/js/controls/OrbitControls.js"></script>
+
+    <script src="mathFunctions.js" defer></script>
+    <script src="flightFunctions.js" defer></script>
+    <script src="threeJSSetup.js" defer></script>
+    <script src="sphericalPlanet.js" defer></script>
+
+    <style>
+        #launchControls {
+            width: 90vw;
+            height: 250px;
+
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+        }
+
+        #launchAngleCanvas {
+            height: 100%;
+            width: 100%;
+        }
+
+        #canvas {
+            height: 90vw;
+            width: 90vw;
+            
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body ontouchstart class="noTabBar">
+    <div class="navigation-bar">
+        <div class="leftButtons">
+            <button class="button" id="back">Back</button>
+        </div>
+        <div><label>Spherical Planet</label></div>
+        <div class="rightButtons"></div>
+    </div>
+    
+    <div class="main">
+        <div id="parameters">
+            <!-- Parameters added dynamically within JS -->
+        </div>
+
+        <!-- Visualise the launch angles of the rocket -->
+        <div id="launchControls">
+            <div style="display: grid; grid-template-rows: auto max-content; padding: 10px;">
+                <canvas id="launchAngleCanvas"></canvas>
+                <i>Launch angles are relative to the center of the Earth</i>
+            </div>
+            <div style="display: grid; place-content: center; gap: 15px;">
+                <button class="button" id="launch">Launch</button>
+                <Label id="label">Landed at: </Label>
+            </div>
+        </div>
+        <br>
+        <br>
+
+
+        <canvas id="canvas"></canvas>
+    </div>
+</body>
+</html>

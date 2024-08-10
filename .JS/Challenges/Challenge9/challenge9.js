@@ -83,3 +83,4 @@ CURRENT_CHALLENGE = () => {
     ]);
 };
 CURRENT_CHALLENGE();
+InitAxisTitle("x/m", "y/m");

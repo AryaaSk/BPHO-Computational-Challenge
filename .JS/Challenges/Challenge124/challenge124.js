@@ -11,6 +11,7 @@ InitSliderForKey(Challenge124Parameters, "angle", "Launch Angle (X degrees)", { 
 InitSliderForKey(Challenge124Parameters, "g", "Gravitational Field Strength (-X ms-2)", { min: 1, max: 15, step: 0.1 });
 InitSliderForKey(Challenge124Parameters, "speed", "Launch Speed (X ms-1)", { min: 1, max: 15, step: 0.1 });
 InitSliderForKey(Challenge124Parameters, "height", "Launch Height (X m)", { min: 0, max: 10, step: 0.1 });
+InitInfo("Description of challenge 1, 2 and 4");
 //@ts-expect-error
 const canvas = new Canvas();
 canvas.linkCanvas("canvas");
@@ -40,7 +41,7 @@ const Challenge1 = () => {
     canvas.AdjustIntervals();
     canvas.clearCanvas();
     canvas.DrawAxis();
-    canvas.DrawLine(points, "blue", 10);
+    canvas.DrawLine(points, "blue", 5);
 };
 const Challenge2 = () => {
     //instead of using t as a parameter, we will elimate from this system and form an equation linking x and y
@@ -80,7 +81,7 @@ const Challenge2 = () => {
     const pointOffset = 10; //line gets slightly raised due to thickness, so offset point to preven the point from looking out of place
     canvas.clearCanvas();
     canvas.DrawAxis();
-    canvas.DrawLine(points, "blue", 10);
+    canvas.DrawLine(points, "blue", 5);
     canvas.PlotPoint(apogee, "orange", "Apogee", { x: 0, y: pointOffset / 2 });
 };
 // Function to solve quadratic and linear equations
@@ -150,8 +151,8 @@ const Challenge4 = () => {
     canvas.AdjustIntervals();
     canvas.clearCanvas();
     canvas.DrawAxis();
-    canvas.DrawLine(points, "blue", 10);
-    canvas.DrawLine(points_max, "orange", 10);
+    canvas.DrawLine(points, "blue", 5);
+    canvas.DrawLine(points_max, "orange", 5);
     AddKey([
         { colour: "blue", label: "Projectile" },
         { colour: "orange", label: "Max range" },

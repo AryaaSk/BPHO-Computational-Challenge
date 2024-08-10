@@ -90,6 +90,8 @@ CURRENT_CHALLENGE = () => {
     //Code for challenge goes here
 }
 CURRENT_CHALLENGE();
+
+InitAxisTitle("x/m", "y/m");
 ```
 
 ### Parameters
