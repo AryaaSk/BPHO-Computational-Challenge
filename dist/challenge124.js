@@ -166,4 +166,4 @@ InitChallengeToggle([
 ]);
 InitAxisTitle("x/m", "y/m");
 CURRENT_CHALLENGE = Challenge1;
-CURRENT_CHALLENGE();
+setTimeout(CURRENT_CHALLENGE);
