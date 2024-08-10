@@ -186,6 +186,9 @@ const Challenge5 = () => {
         { colour: "green", label: "Bounding parabola" }
     ]);
 };
+const Challenge356Labels = {
+    distanceTravelled: 0
+};
 const Challenge6 = () => {
     const points_low = []; // low ball points
     const points_high = []; // high ball points
@@ -251,6 +254,7 @@ const Challenge6 = () => {
         { colour: "grey", label: "Min u" },
         { colour: "orange", label: "Low ball" }
     ]);
+    AddLabel(Challenge356Labels, "distanceTravelled", "Distance Travelled: X");
 };
 InitChallengeToggle([
     { buttonID: "challenge3", challengeCallback: Challenge3 },
@@ -260,3 +264,4 @@ InitChallengeToggle([
 InitAxisTitle("x/m", "y/m");
 CURRENT_CHALLENGE = Challenge3;
 CURRENT_CHALLENGE();
+setTimeout(CURRENT_CHALLENGE, 30);

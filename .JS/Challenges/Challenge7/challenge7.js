@@ -130,4 +130,4 @@ InitChallengeToggle([
     { buttonID: "trajectory", challengeCallback: Trajectory },
 ]);
 CURRENT_CHALLENGE = RangeTime;
-CURRENT_CHALLENGE();
+setTimeout(CURRENT_CHALLENGE, 30);

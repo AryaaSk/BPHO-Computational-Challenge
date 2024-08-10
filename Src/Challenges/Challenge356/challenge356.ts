@@ -7,7 +7,6 @@ const Challenge356Parameters = {
     u: 150
 };
 
-
 InitSliderForKey(Challenge356Parameters, "x", "Target x (X m)", { min: 0, max: 1200, step: 1 });
 InitSliderForKey(Challenge356Parameters, "y", "Target y (X m)", { min: 0, max: 1200, step: 1 });
 InitSliderForKey(Challenge356Parameters, "h", "Height (X m)", { min: 0, max: 1000, step: 1 });
@@ -220,7 +219,11 @@ const Challenge5 = () => {
     ]);
 }
 
+const Challenge356Labels = {
+    distanceTravelled: 0
+}
 const Challenge6 = () => {
+    
     const points_low: [number, number][] = []; // low ball points
     const points_high: [number, number][] = []; // high ball points
     const points_min: [number, number][] = []; // min. speed points
@@ -298,6 +301,7 @@ const Challenge6 = () => {
         { colour: "grey", label: "Min u" },
         { colour: "orange", label: "Low ball" }
     ]);
+    AddLabel(Challenge356Labels, "distanceTravelled", "Distance Travelled: X");
 }
 InitChallengeToggle([
     { buttonID: "challenge3", challengeCallback: Challenge3 },
@@ -308,3 +312,4 @@ InitChallengeToggle([
 InitAxisTitle("x/m", "y/m")
 CURRENT_CHALLENGE = Challenge3;
 CURRENT_CHALLENGE();
+setTimeout(CURRENT_CHALLENGE, 30)
