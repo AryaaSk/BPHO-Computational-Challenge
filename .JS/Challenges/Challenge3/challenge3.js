@@ -108,4 +108,4 @@ CURRENT_CHALLENGE = () => {
     ]);
 };
 InitAxisTitle("x/m", "y/m");
-setTimeout(CURRENT_CHALLENGE, 2000);
+setTimeout(CURRENT_CHALLENGE, 30);

@@ -10,4 +10,4 @@ canvas.CalculateConversionFactors();
 CURRENT_CHALLENGE = () => {
     //Code for challenge goes here
 }
-setTimeout(CURRENT_CHALLENGE);
+setTimeout(CURRENT_CHALLENGE, 30)

@@ -207,4 +207,4 @@ InitChallengeToggle([
 
 InitAxisTitle("x/m", "y/m")
 CURRENT_CHALLENGE = Challenge1;
-setTimeout(CURRENT_CHALLENGE)
+setTimeout(CURRENT_CHALLENGE, 30)

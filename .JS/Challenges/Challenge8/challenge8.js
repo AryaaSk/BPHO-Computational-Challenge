@@ -86,4 +86,4 @@ CURRENT_CHALLENGE = async () => {
     };
 };
 InitAxisTitle("x/m", "y/m");
-setTimeout(CURRENT_CHALLENGE);
+setTimeout(CURRENT_CHALLENGE, 30);

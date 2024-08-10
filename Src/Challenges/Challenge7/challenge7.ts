@@ -155,4 +155,4 @@ InitChallengeToggle([
 ]);
 
 CURRENT_CHALLENGE = RangeTime;
-setTimeout(CURRENT_CHALLENGE);
+setTimeout(CURRENT_CHALLENGE, 30)
