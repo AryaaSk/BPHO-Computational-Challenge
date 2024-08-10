@@ -107,5 +107,5 @@ CURRENT_CHALLENGE = () => {
         { colour: "orange", label: "Low ball" }
     ]);
 };
-CURRENT_CHALLENGE();
 InitAxisTitle("x/m", "y/m");
+setTimeout(CURRENT_CHALLENGE);
