@@ -78,7 +78,7 @@ CURRENT_CHALLENGE = () => {
     for (let x_min = 0; x_min <= X; x_min += X / 100) {
         points_min.push([x_min, y(x_min, tan_theta_min, min_speed)]);
     }
-    for (let x_bound = 0; x_bound <= X * 5; x_bound += X / 100) {
+    for (let x_bound = 0; x_bound <= X; x_bound += X / 100) {
         const y_coord = y_bounding(x_bound, launch_speed);
         points_bounding.push([x_bound, y_coord]);
         if (y_coord == 0) {
@@ -97,13 +97,10 @@ CURRENT_CHALLENGE = () => {
         }
     }
     // only need to keep target x and y in view
-    canvas.MAX_X = 2000;
-    // calculate max y based on the y values in points arrays
-    canvas.MAX_Y = parseFloat((Math.max(...points_high.map(point => point[1])) * 1.2).toPrecision(2));
-    // avoid clutter
-    canvas.xStep = parseFloat((canvas.MAX_X / 10).toPrecision(2));
-    canvas.yStep = parseFloat((canvas.MAX_Y / 10).toPrecision(2));
     canvas.CalculateConversionFactors();
+    canvas.MaximiseViewWindow(points_bounding);
+    canvas.MaximiseViewWindow(points_high);
+    canvas.AdjustIntervals();
     const pointOffset = 5;
     canvas.clearCanvas();
     canvas.DrawAxis();
