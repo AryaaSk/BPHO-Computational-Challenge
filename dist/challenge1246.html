@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="manifest" href="manifest.json">
-    <title>Challenge 3</title>
+    <title>Challenge 1, 2, 4 and 6</title>
 
     <script src="native.js"></script>
     <script src="canvasUtilities.js"></script>
@@ -18,14 +18,14 @@
     <link rel="stylesheet" href="native.css">
     <link rel="stylesheet" href="challenge.css">
 
-    <script src="challenge3.js" defer></script>
+    <script src="challenge1246.js" defer></script>
 </head>
 <body ontouchstart class="noTabBar">
     <div class="navigation-bar">
         <div class="leftButtons">
             <button class="button" id="back">Back</button>
         </div>
-        <div><label>Challenge 3</label></div> <!-- Change the title of the page -->
+        <div><label>Challenge 1, 2, 4 and 6</label></div>
         <div class="rightButtons"></div>
     </div>
     
@@ -34,12 +34,22 @@
             <!-- Parameters added dynamically within JS -->
         </div>
 
-        <!-- Every page comes within an inbuilt canvas -->
+        <br>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <button class="button selected" id="challenge1">Challenge 1</button>
+            <button class="button" id="challenge2">Challenge 2</button>
+            <button class="button" id="challenge4">Challenge 4 + Challenge 6</button>
+        </div>
+        
         <div class="canvasWrapper">
             <label id="yAxis">Y Axis</label>
             <canvas id="canvas"></canvas>
             <div></div>
             <label id="xAxis">X Axis</label>
+        </div>
+
+        <div id = "labels">
+            <!-- Labels added dynamically within JS -->
         </div>
     </div>
 </body>

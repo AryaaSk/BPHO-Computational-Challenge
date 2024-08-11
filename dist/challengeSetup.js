@@ -67,6 +67,29 @@ const AddKey = (key) => {
         keyContainer.append(element);
     }
 };
+const AddLabel = (key, template) => {
+    //add a input:range into the div with class 'parameters'
+    const parent = document.getElementById("labels");
+    let keyContainer = document.getElementById(key);
+    if (keyContainer == null) {
+        const label = document.createElement("label");
+        label.id = key;
+        if (parent.children.length >= 1) {
+            label.innerText = ", " + template;
+        }
+        else {
+            label.innerText = template;
+        }
+        parent.append(label);
+    }
+};
+const UpdateLabelText = (key, template, value) => {
+    //add a input:range into the div with class 'parameters'
+    const label = document.getElementById(key);
+    const text = template.replace("X", String(value.toFixed(1)));
+    // @ts-expect-error
+    label.innerText = text + " ";
+};
 const InitChallengeToggle = (challenges) => {
     const buttons = [];
     for (const challenge of challenges) {

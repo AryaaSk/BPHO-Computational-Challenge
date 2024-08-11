@@ -1,6 +1,6 @@
 "use strict";
 const Parameters = {
-    angularVelocity: Math.round(Math.PI / 5000 * 10000) / 10000,
+    angularVelocity: Math.round(Math.PI / 5000 * 10000) / 10000, //time period of 5000s
     launchVelocity: 7000,
     initialLatitude: 52,
     initialLongitude: 0,
@@ -15,6 +15,7 @@ InitSliderForKey(Parameters, "initialLongitude", "Initial Longitude: X degrees",
 InitSliderForKey(Parameters, "launchAngleX", "Launch Angle (x): X degrees", { min: -60, max: 60, step: 1 });
 InitSliderForKey(Parameters, "launchAngleY", "Launch Angle (y): X degrees", { min: -60, max: 60, step: 1 });
 InitSliderForKey(Parameters, "launchAngleZ", "Launch Angle (z): X degrees", { min: -60, max: 60, step: 1 });
+InitInfo(`Extension: Projectile model which considers launching projectiles from spherical planet, rotating about its axis and animates where projectile lands`);
 const launchButton = document.getElementById("launch");
 const UpdateLabel = (text) => {
     const label = document.getElementById("label");
