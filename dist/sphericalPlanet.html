@@ -34,22 +34,25 @@
             margin: 0 auto;
 
             display: grid;
-            grid-template-rows: max-content auto;
+            grid-template-rows: 30px calc(100% - 30px);
             grid-template-columns: 2fr 1fr;
         }
 
-        #launchAngleCanvas {
-            height: 100%;
-            aspect-ratio: 1/1;
-        }
         #angleCanvasWrapper {
+            height: 100%;
             padding: 10px;
 
             display: grid;
-            grid-template-rows: auto max-content;
+            grid-template-rows: 85% 15%;
             grid-template-columns: 100%;
             place-items: center;
         }
+        #launchAngleCanvas {
+            height: 100%;
+            width: auto;
+            aspect-ratio: 1/1;
+        }
+        
         #launchButtonWrapper {
             display: grid;
             place-content: center;

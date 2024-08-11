@@ -1,7 +1,7 @@
 "use strict";
 const Challenge9Parameters = {
     angle: 30,
-    g: 9.8, //not taking g as negative (handled in calculations)
+    g: 9.8,
     speed: 20,
     height: 2,
     dragCoefficient: 1,
@@ -18,6 +18,7 @@ InitSliderForKey(Challenge9Parameters, "dragCoefficient", "Drag Coefficient (X)"
 InitSliderForKey(Challenge9Parameters, "crossSectionalArea", "Cross Sectional Area (X m2)", { min: 0.001, max: 0.01, step: 0.001 });
 InitSliderForKey(Challenge9Parameters, "airDensity", "Air Density (X kgm-3)", { min: 0.5, max: 5, step: 0.5 });
 InitSliderForKey(Challenge9Parameters, "mass", "Object Mass (X kg)", { min: 0.1, max: 10, step: 0.1 });
+InitInfo(`Challenge 9: new projectile model which compares drag-free model with model incorporating effect of air resistance`);
 //@ts-expect-error
 const canvas = new Canvas();
 canvas.linkCanvas("canvas");

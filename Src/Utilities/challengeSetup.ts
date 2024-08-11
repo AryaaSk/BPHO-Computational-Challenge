@@ -80,6 +80,10 @@ const AddKey = (key: { colour: string, label: string }[]) => {
     }
 }
 
+const ClearLabels = () => {
+    const parent = document.getElementById("labels")!;
+    parent.innerHTML = "";
+}
 const AddLabel = (key: string, template: string) => {
     //add a input:range into the div with class 'parameters'
     const parent = document.getElementById("labels")!;

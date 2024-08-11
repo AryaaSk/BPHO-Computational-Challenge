@@ -14,6 +14,7 @@ InitSliderForKey(Challenge8Parameters, "u", "Launch Speed (X ms-1)", { min: 1, m
 InitSliderForKey(Challenge8Parameters, "h", "Launch Height (X m)", { min: 0, max: 10, step: 0.5 });
 InitSliderForKey(Challenge8Parameters, "C", "Coefficient of Restitution (X)", { min: 0, max: 1, step: 0.1 });
 InitSliderForKey(Challenge8Parameters, "N", "Number of Bounces (X)", { min: 1, max: 10, step: 1 });
+InitInfo(`Challenge 8: Computes and animates projectile trajectory which includes possibility of bounces, and can be downloaded for future playback.`);
 //@ts-expect-error
 const canvas = new Canvas();
 canvas.linkCanvas("canvas");

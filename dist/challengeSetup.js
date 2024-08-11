@@ -67,6 +67,10 @@ const AddKey = (key) => {
         keyContainer.append(element);
     }
 };
+const ClearLabels = () => {
+    const parent = document.getElementById("labels");
+    parent.innerHTML = "";
+};
 const AddLabel = (key, template) => {
     //add a input:range into the div with class 'parameters'
     const parent = document.getElementById("labels");

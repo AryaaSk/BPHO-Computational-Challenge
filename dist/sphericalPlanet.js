@@ -1,6 +1,6 @@
 "use strict";
 const Parameters = {
-    angularVelocity: Math.round(Math.PI / 5000 * 10000) / 10000, //time period of 5000s
+    angularVelocity: Math.round(Math.PI / 5000 * 10000) / 10000,
     launchVelocity: 7000,
     initialLatitude: 52,
     initialLongitude: 0,

@@ -11,9 +11,9 @@ InitSliderForKey(Challenge1246Parameters, "angle", "Launch Angle (X degrees)", {
 InitSliderForKey(Challenge1246Parameters, "g", "Gravitational Field Strength (-X ms-2)", { min: 1, max: 15, step: 0.1 });
 InitSliderForKey(Challenge1246Parameters, "speed", "Launch Speed (X ms-1)", { min: 1, max: 15, step: 0.1 });
 InitSliderForKey(Challenge1246Parameters, "height", "Launch Height (X m)", { min: 0, max: 10, step: 0.1 });
-InitInfo(`Challenge 1: simple model of drag-free projectile motion with inputs launch angle from horizontal, strength of gravity g, launch speed u and launch height h,
-Challenge 2: analytic version of challenge 1 model, with the apogee labelled,
-Challenge 4 + 6: project model comparing trajectory to trajectory which maximises horizontal range given same laungh height and speed, along with calculation of distance travelled by projectile`);
+InitInfo(`Challenge 1: Simple model of drag-free projectile motion with inputs launch angle from horizontal, strength of gravity g, launch speed u and launch height h\n
+Challenge 2: Analytic version of challenge 1 model, with the apogee labelled\n
+Challenge 4 + 6: Projectile model comparing trajectory to trajectory which maximises horizontal range given same laungh height and speed, along with calculation of distance travelled by projectile`);
 //@ts-expect-error
 const canvas = new Canvas();
 canvas.linkCanvas("canvas");
@@ -44,6 +44,7 @@ const Challenge1 = () => {
     canvas.clearCanvas();
     canvas.DrawAxis();
     canvas.DrawLine(points, "blue", 5);
+    ClearLabels();
 };
 const Challenge2 = () => {
     //instead of using t as a parameter, we will elimate from this system and form an equation linking x and y
@@ -85,8 +86,10 @@ const Challenge2 = () => {
     canvas.DrawAxis();
     canvas.DrawLine(points, "blue", 5);
     canvas.PlotPoint(apogee, "orange", "Apogee", { x: 0, y: pointOffset / 2 });
+    ClearLabels();
 };
 // Function to solve quadratic and linear equations
+//@ts-ignore
 function solve_4(a, b, c) {
     if (a === 0) {
         if (b !== 0) {
@@ -173,6 +176,7 @@ const Challenge4 = () => {
         { colour: "blue", label: "Projectile" },
         { colour: "orange", label: "Max range" },
     ]);
+    ClearLabels();
     AddLabel("R", "R: Xm,");
     AddLabel("R_max", "Rmax: Xm,");
     AddLabel("theta", "θ: X°,");

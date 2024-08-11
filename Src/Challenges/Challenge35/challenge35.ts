@@ -13,8 +13,8 @@ InitSliderForKey(Challenge35Parameters, "h", "Height (X m)", { min: 0, max: 1000
 InitSliderForKey(Challenge35Parameters, "g", "Gravitaional Field Strength (X ms-2)", { min: 1, max: 15, step: 0.1 });
 InitSliderForKey(Challenge35Parameters, "launch_speed", "Launch Speed (X ms-1)", { min: 0, max: 500, step: 0.1 });
 
-InitInfo(`Challenge 3: projectile model based upon calculating trajectories that passed through fixed position (x, y),
-Challenge 5: updated version of 3 with added bounding parabola curve, marking regions where possible (x, y) coords could be reached given u, h, and g,`)
+InitInfo(`Challenge 3: Projectile model based upon calculating trajectories that passed through fixed position (x, y)\n
+Challenge 5: Updated version of 3 with added bounding parabola curve, marking regions where possible (x, y) coords could be reached given u, h, and g.`)
     
 // @ts-expect-error
 const canvas = new Canvas();
@@ -98,7 +98,8 @@ const Challenge3 = () => {
     }
     
     // only need to keep target x and y in view
-    canvas.CalculateConversionFactors();
+    canvas.MAX_X = 15;
+    canvas.MAX_Y = 15;
     canvas.MaximiseViewWindow(points_high);
     canvas.AdjustIntervals();
 
@@ -192,9 +193,9 @@ const Challenge5 = () => {
     }
     
     // only need to keep target x and y in view
-    canvas.CalculateConversionFactors();
+    canvas.MAX_X = 15;
+    canvas.MAX_Y = 15;
     canvas.MaximiseViewWindow(points_bounding);
-    
     canvas.AdjustIntervals();
 
     const pointOffset = 5;
