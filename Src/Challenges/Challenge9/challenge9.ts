@@ -22,6 +22,8 @@ InitSliderForKey(Challenge9Parameters, "crossSectionalArea", "Cross Sectional Ar
 InitSliderForKey(Challenge9Parameters, "airDensity", "Air Density (X kgm-3)", { min: 0.5, max: 5, step: 0.5 });
 InitSliderForKey(Challenge9Parameters, "mass", "Object Mass (X kg)", { min: 0.1, max: 10, step: 0.1 });
 
+InitInfo(`Challenge 9: new projectile model which compares drag-free model with model incorporating effect of air resistance`);
+
 //@ts-expect-error
 const canvas = new Canvas();
 canvas.linkCanvas("canvas");

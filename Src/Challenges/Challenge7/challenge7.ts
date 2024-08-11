@@ -10,6 +10,8 @@ InitSliderForKey(Challenge7Parameters, "theta", "Launch Angle (X degrees)", { mi
 InitSliderForKey(Challenge7Parameters, "u", "Launch Speed (X ms-1)", { min: 1, max: 15, step: 0.1 });
 InitSliderForKey(Challenge7Parameters, "g", "Gravitational Field Strength (-X ms-2)", { min: 1, max: 15, step: 0.1 });
 
+InitInfo(`Challenge 7: model calculates maxima and minima when range of projectile plotted against time,`)
+
 //@ts-expect-error
 const canvas = new Canvas();
 canvas.linkCanvas("canvas");

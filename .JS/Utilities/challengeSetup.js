@@ -67,21 +67,28 @@ const AddKey = (key) => {
         keyContainer.append(element);
     }
 };
-const AddLabel = (parameters, key, template) => {
+const AddLabel = (key, template) => {
     //add a input:range into the div with class 'parameters'
     const parent = document.getElementById("labels");
-    const row = document.createElement("div");
-    row.className = "parameterWrapper";
-    const label = document.createElement("label");
-    //add label and slider into row
-    row.append(label);
-    parent.append(row);
-    //link slider value, parameter key and label
-    const UpdateValue = (sliderValue) => {
-        parameters[key] = Number(sliderValue);
-        const text = template.replace("X", String(parameters[key]));
-        label.innerText = text;
-    };
+    let keyContainer = document.getElementById(key);
+    if (keyContainer == null) {
+        const label = document.createElement("label");
+        label.id = key;
+        if (parent.children.length >= 1) {
+            label.innerText = ", " + template;
+        }
+        else {
+            label.innerText = template;
+        }
+        parent.append(label);
+    }
+};
+const UpdateLabelText = (key, template, value) => {
+    //add a input:range into the div with class 'parameters'
+    const label = document.getElementById(key);
+    const text = template.replace("X", String(value.toFixed(1)));
+    // @ts-expect-error
+    label.innerText = text + " ";
 };
 const InitChallengeToggle = (challenges) => {
     const buttons = [];
@@ -117,5 +124,15 @@ const InitAxisTitle = (x, y) => {
     xAxis.innerText = x;
     const yAxis = document.getElementById("yAxis");
     yAxis.innerText = y;
+};
+const InitInfo = (info) => {
+    const infoButton = document.createElement("button");
+    infoButton.className = "button";
+    infoButton.innerText = "ⓘ";
+    const rightBarButtonContainer = document.getElementsByClassName("rightButtons")[0];
+    rightBarButtonContainer.append(infoButton);
+    infoButton.onclick = () => {
+        alert(info);
+    };
 };
 InitBackButton();

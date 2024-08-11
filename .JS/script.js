@@ -1,7 +1,7 @@
 "use strict";
 const CHALLENGES = [
-    { name: "Challenge 1, 2 and 4", HTMLFilePath: "/Src/Challenges/Challenge124/challenge124.html" },
-    { name: "Challenge 3, 5 and 6", HTMLFilePath: "/Src/Challenges/Challenge356/challenge356.html" },
+    { name: "Challenge 1, 2, 4 and 6", HTMLFilePath: "/Src/Challenges/Challenge1246/challenge1246.html" },
+    { name: "Challenge 3 and 5", HTMLFilePath: "/Src/Challenges/Challenge35/challenge35.html" },
     { name: "Challenge 7", HTMLFilePath: "/Src/Challenges/Challenge7/challenge7.html" },
     { name: "Challenge 8", HTMLFilePath: "/Src/Challenges/Challenge8/challenge8.html" },
     { name: "Challenge 9", HTMLFilePath: "/Src/Challenges/Challenge9/challenge9.html" },

@@ -17,6 +17,8 @@ InitSliderForKey(Parameters, "launchAngleX", "Launch Angle (x): X degrees", { mi
 InitSliderForKey(Parameters, "launchAngleY", "Launch Angle (y): X degrees", { min: -60, max: 60, step: 1 });
 InitSliderForKey(Parameters, "launchAngleZ", "Launch Angle (z): X degrees", { min: -60, max: 60, step: 1 });
 
+InitInfo(`Extension: Projectile model which considers launching projectiles from spherical planet, rotating about its axis and animates where projectile lands`)
+  
 const launchButton = document.getElementById("launch")!;
 
 const UpdateLabel = (text: string) => {

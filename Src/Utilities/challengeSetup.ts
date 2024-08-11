@@ -61,7 +61,7 @@ const InitSliderForKey = (parameters: { [key: string]: number }, key: string, te
 
 const AddKey = (key: { colour: string, label: string }[]) => {
     //create a key wrapper, then add key elements within it
-    const main = document.getElementsByClassName("main")[0]
+    const main = document.getElementsByClassName("main")[0];
 
     let keyContainer = document.getElementById("key") as HTMLElement | null;
 
@@ -80,24 +80,32 @@ const AddKey = (key: { colour: string, label: string }[]) => {
     }
 }
 
-const AddLabel = (parameters: { [key: string]: number }, key: string, template: string) => {
+const AddLabel = (key: string, template: string) => {
     //add a input:range into the div with class 'parameters'
     const parent = document.getElementById("labels")!;
     
-    const row = document.createElement("div");
-    row.className = "parameterWrapper"
-    const label = document.createElement("label");
+    let keyContainer = document.getElementById(key) as HTMLElement | null;
 
-    //add label and slider into row
-    row.append(label);
-    parent.append(row);
-
-    //link slider value, parameter key and label
-    const UpdateValue = (sliderValue: string) => {
-        parameters[key] = Number(sliderValue);
-        const text = template.replace("X", String(parameters[key]));
-        label.innerText = text;
+    if (keyContainer == null) {
+        const label = document.createElement("label");
+        label.id = key;
+        if (parent.children.length >= 1) {
+            label.innerText = ", " + template;
+        }
+        else {
+            label.innerText = template;
+        }
+        parent.append(label);
     }
+}
+
+const UpdateLabelText = (key: string, template: string, value: number) => {
+    //add a input:range into the div with class 'parameters'
+
+    const label = document.getElementById(key);
+    const text = template.replace("X", String(value.toFixed(1)));
+    // @ts-expect-error
+    label.innerText = text + " ";
 }
 
 const InitChallengeToggle = (challenges: { buttonID: string, challengeCallback: () => void }[]) => {
@@ -139,6 +147,19 @@ const InitAxisTitle = (x: string, y: string) => {
 
     const yAxis = document.getElementById("yAxis")!;
     yAxis.innerText = y;
+}
+
+const InitInfo = (info: string) => {
+    const infoButton = document.createElement("button");
+    infoButton.className = "button";
+    infoButton.innerText = "ⓘ";
+
+    const rightBarButtonContainer = document.getElementsByClassName("rightButtons")[0];
+    rightBarButtonContainer.append(infoButton);
+
+    infoButton.onclick = () => {
+        alert(info);
+    }
 }
 
 
