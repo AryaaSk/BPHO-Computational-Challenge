@@ -186,4 +186,30 @@ const PostFlightIntervalCallback = () => {
 }
 
 
-CURRENT_CHALLENGE();
+//Launch Preview Toggle
+const toggleLaunchPreviewButton = document.getElementById("toggleAnglePreview")!;
+const launchControls = document.getElementById("launchControls")!;
+const angleCanvasWrapper = document.getElementById("angleCanvasWrapper")!;
+const launchButtonWrapper = document.getElementById("launchButtonWrapper")!;
+let anglePreviewShown = true;
+
+toggleLaunchPreviewButton.onclick = () => {
+  anglePreviewShown = !anglePreviewShown;
+  if (anglePreviewShown == true) {
+    angleCanvasWrapper.style.display = ""; //reset all inline CSS styles formatted earlier
+    launchButtonWrapper.style.gridColumn = "";
+    launchButtonWrapper.style.marginTop = "";
+    launchControls.style.height = "";
+    toggleLaunchPreviewButton.innerText = "Hide Angle Preview";
+  }
+  else {
+    angleCanvasWrapper.style.display = "none";
+    launchButtonWrapper.style.gridColumn = "1 / 3";
+    launchButtonWrapper.style.marginTop = "30px";
+    launchControls.style.height = "max-content";
+    toggleLaunchPreviewButton.innerText = "Show Angle Preview";
+  }
+}
+
+
+setTimeout(CURRENT_CHALLENGE, 30);
