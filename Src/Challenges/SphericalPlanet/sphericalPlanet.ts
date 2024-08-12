@@ -141,7 +141,7 @@ CURRENT_CHALLENGE = async () => {
   flightInterval = setInterval(() => {
     FlightIntervalCallback();
 
-    if (tickCounter % 30 == 0) { //only log position once every 100 ticks to improve performance
+    if (tickCounter % 30 == 0) { //only log position once every 30 ticks to improve performance
       LogPosition();
     }
     tickCounter += 1;

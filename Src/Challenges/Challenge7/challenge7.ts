@@ -78,7 +78,7 @@ const RangeTime = () => {
         return Math.sqrt(u**2 * t**2 - g * t**3 * u * Math.sin(thetaRadians) + 1 / 4 * g**2 * t**4);
     }
 
-    const [maxTime, minTime] = SolveStationaryPoints();
+    const [maxTime, minTime] = SolveStationaryPoints(); //if points don't exist, this will simply return [undefined]*2
 
     //now just plot R against t and put points at these stationary points
     const endTime = CalculateTimeRange(-8);

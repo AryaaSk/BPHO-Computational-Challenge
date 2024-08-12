@@ -1,7 +1,3 @@
-// TODO:
-// if you change sliders during animation causes errors
-declare const FFmpeg: any;
-
 const Challenge8Parameters = {
     //Parameters required for challenge
     u: 5,
