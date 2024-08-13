@@ -11,7 +11,7 @@ To download app onto iOS devices click 'Share' and 'Add to Home Screen'.
 
 <p align="middle">
   <img src="Previews/1.png?raw=true" width="30%" />
-  <img src="Previews/2.png?raw=true" width="30" /> 
+  <img src="Previews/2.png?raw=true" width="30%" /> 
   <img src="Previews/3.png?raw=true" width="30%" />
 </p>
 
