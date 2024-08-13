@@ -10,9 +10,9 @@ App: https://aryaask.github.io/BPHO-Computational-Challenge/dist/
 To download app onto iOS devices click 'Share' and 'Add to Home Screen'.
 
 <p align="middle">
-  <img src="Previews/1.png?raw=true" width="100" />
-  <img src="Previews/2.png?raw=true" width="100" /> 
-  <img src="Previews/3.png?raw=true" width="100" />
+  <img src="Previews/1.png?raw=true" width="150" />
+  <img src="Previews/2.png?raw=true" width="150" /> 
+  <img src="Previews/3.png?raw=true" width="150" />
 </p>
 
 YouTube explanation: https://youtu.be/TjxMx0muaXY
